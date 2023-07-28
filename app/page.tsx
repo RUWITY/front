@@ -1,3 +1,5 @@
+import Button from "components/Button";
+
 export default async function Page() {
   return (
     <div className="max-w-[1000px] mx-auto bg-red-400 w-full min-h-screen h-full flex">
@@ -28,7 +30,7 @@ export default async function Page() {
                 <div>아이콘</div>
               </div>
               <div className="w-20 h-20 bg-blue-300 rounded-[50%] mx-auto mb-10" />
-              <div className=" space-y-3">
+              <div className="space-y-3">
                 <input
                   className="py-2 px-4 rounded-lg outline-none focus:border-solid focus:border-primary focus:border w-full data-[state=invalid]:focus:border-solid data-[state=invalid]:focus:border-red-500 data-[state=invalid]:focus:border bg-neutral-100 h-11 text-sm"
                   placeholder="닉네임을 적어주세요"
@@ -43,9 +45,7 @@ export default async function Page() {
                 />
               </div>
             </div>
-            <button className=" cursor-pointer  w-full font-bold h-12 rounded-lg bg-primary text-white mb-4 bg-red-400">
-              + 탭 추가
-            </button>
+            <Button />
           </section>
         </main>
       </div>
