@@ -9,7 +9,7 @@ export default function Button() {
   return (
     <>
       <button
-        className=" cursor-pointer  w-full font-bold h-12 rounded-lg bg-primary text-white mb-4 bg-red-400"
+        className=" cursor-pointer  w-full font-bold h-12 rounded-lg bg-primary text-white mb-4 bg-[#7163E8]"
         type="button"
         onClick={() => setShowModal(true)}
       >

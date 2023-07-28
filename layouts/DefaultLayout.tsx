@@ -3,5 +3,5 @@ interface DefaultLayoutProps {
 }
 
 export default function DefaultLayout({ children }: DefaultLayoutProps) {
-  return <div className="mx-auto max-w-[1000px]">{children}</div>;
+  return <div className="mx-auto max-w-[390px]">{children}</div>;
 }
