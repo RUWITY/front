@@ -7,9 +7,7 @@ import "./index.css";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<div className=" ">123</div>}>
-        <Route index element={<Main />} />
-      </Route>
+      <Route path="/" element={<Main />} />
     </Routes>
   );
 }
