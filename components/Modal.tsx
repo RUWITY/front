@@ -6,13 +6,19 @@ import { Dialog, Transition } from "@headlessui/react";
 interface MyModalProps {
   showModal: any;
   setShowModal: any;
+  setInputList: any;
+  inputList: any;
 }
 
-export default function Modal({ showModal, setShowModal }: MyModalProps) {
+export default function Modal({
+  showModal,
+  setShowModal,
+  setInputList,
+  inputList,
+}: MyModalProps) {
   const itemList = [
-    { title: "텍스트" },
-    { title: "링크" },
-    { title: "이미지" },
+    { title: "텍스트", value: "text" },
+    { title: "링크", value: "link" },
   ];
 
   return (
@@ -34,7 +40,6 @@ export default function Modal({ showModal, setShowModal }: MyModalProps) {
           >
             <div className="fixed inset-0 bg-black bg-opacity-25" />
           </Transition.Child>
-
           <div className="fixed inset-0 overflow-y-auto">
             <div className="flex min-h-full items-center justify-center p-4 text-center">
               <Transition.Child
@@ -51,9 +56,15 @@ export default function Modal({ showModal, setShowModal }: MyModalProps) {
                     어떤 탭을 추가하고 싶으신가요?
                   </Dialog.Title>
                   <div className="mt-2">
-                    <div className=" space-y-2">
+                    <div className="space-y-2">
                       {itemList.map((item) => (
-                        <div className="w-full h-full flex items-center p-4 bg-red-300 rounded-md font-bold">
+                        <div
+                          className="w-full h-full flex items-center p-4 bg-red-300 rounded-md font-bold"
+                          onClick={() => {
+                            setInputList([...inputList, item.value]);
+                            setShowModal(false);
+                          }}
+                        >
                           {item.title}
                         </div>
                       ))}
