@@ -1,14 +1,36 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import Image from "next/legacy/image";
 
+import Icons from "assets/icons";
 import ShareButton from "components/ShareButton";
 
 export default function Header() {
+  const router = useRouter();
   const pathname = usePathname();
 
   if (["/signin", "/userinfo"].includes(pathname)) {
-    return <></>;
+    return (
+      <header
+        className="fixed top-0 z-10 max-w-inherit w-full px-4 py-3 flex items-center justify-between h-15 bg-white max-w-[390px]"
+        style={{
+          left: "50%",
+          transform: "translate(-50%, 0)",
+          boxShadow: "0px 4px 24px 0px rgba(171, 167, 167, 0.1)",
+        }}
+      >
+        <div className="flex items-center w-full">
+          <Image
+            src={Icons.ArrowBackIcon}
+            width={24}
+            height={24}
+            alt="뒤로가기 아이콘"
+            onClick={() => router.back()}
+          />
+        </div>
+      </header>
+    );
   }
 
   return (

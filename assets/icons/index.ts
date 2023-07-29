@@ -6,6 +6,8 @@ import PageIcon from "./page.svg";
 import SettingIcon from "./setting.svg";
 import ShareIcon from "./share.svg";
 import ThemeIcon from "./theme.svg";
+import ArrowBackIcon from "./arrow_back_ios.svg";
+import InfoIcon from "./info.svg";
 
 export const Icons = {
   AnalyzeIcon,
@@ -16,6 +18,8 @@ export const Icons = {
   SettingIcon,
   ShareIcon,
   ThemeIcon,
+  ArrowBackIcon,
+  InfoIcon,
 };
 
 export default Icons;
