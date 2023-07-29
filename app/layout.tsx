@@ -7,9 +7,9 @@ import BottomNav from "components/BottomNav";
 import "styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "오늘의 링크",
+  title: "링크지",
   description: "오늘의 링크를 남겨주세요",
-  keywords: "오늘의 링크, 링크",
+  keywords: "오늘의 링크, 링크, 링크지",
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
         <meta name="Yeti" content="All" />
         <meta name="Yeti" content="index,follow" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="author" content="오늘의 링크" />
+        <meta name="author" content="링크지" />
       </head>
       <body>
         <Header />
