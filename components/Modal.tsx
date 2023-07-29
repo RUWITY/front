@@ -17,8 +17,8 @@ export default function Modal({
   inputList,
 }: MyModalProps) {
   const itemList = [
-    { title: "텍스트", value: "text" },
-    { title: "링크", value: "link" },
+    { title: "✍🏻  텍스트", value: "text" },
+    { title: "🔗  링크", value: "link" },
   ];
 
   return (
@@ -53,13 +53,13 @@ export default function Modal({
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title className="text-2xl text-black">
-                    어떤 탭을 추가하고 싶으신가요?
+                    어떤 탭을 추가할까요?
                   </Dialog.Title>
                   <div className="mt-2">
                     <div className="space-y-2">
                       {itemList.map((item) => (
                         <div
-                          className="w-full h-full flex items-center p-4 bg-red-300 rounded-md font-bold"
+                          className="w-full h-full flex items-center p-4 bg-[#F3F2FC] rounded-md font-bold cursor-pointer"
                           onClick={() => {
                             setInputList([...inputList, item.value]);
                             setShowModal(false);
