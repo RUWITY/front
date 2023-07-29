@@ -1,8 +1,17 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import Image from "next/legacy/image";
 
 import Icons from "assets/icons";
 
 export default function BottomNav() {
+  const pathname = usePathname();
+
+  if (["/signin", "/userinfo"].includes(pathname)) {
+    return <></>;
+  }
+
   return (
     <div
       className="fixed bottom-0 bg-[#FDFDFD] h-[76px] py-4 w-full max-w-[390px] mx-auto left-0 px-7"

@@ -1,6 +1,16 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
 import ShareButton from "components/ShareButton";
 
 export default function Header() {
+  const pathname = usePathname();
+
+  if (["/signin", "/userinfo"].includes(pathname)) {
+    return <></>;
+  }
+
   return (
     <header
       className="fixed top-0 z-10 max-w-inherit w-full px-4 py-3 flex items-center justify-between h-15 bg-white max-w-[390px]"
