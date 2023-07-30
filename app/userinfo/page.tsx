@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { redirect } from "next/navigation";
 
 import Terms from "components/Terms";
 import TermsDetail from "components/TermsDetail";
@@ -9,14 +10,23 @@ import Complete from "components/Complete";
 import * as userApi from "apis/user";
 
 export default function Page() {
-  const dsa = () => {
-    const dsa = userApi.fetchUserType();
-    console.log(dsa);
+  const [isNew, setIsNew] = useState();
+
+  const loadUserType = async () => {
+    const res = (await userApi.fetchUserType()) as any;
+
+    setIsNew(res);
   };
 
   useEffect(() => {
-    dsa();
+    loadUserType();
   }, []);
+
+  useEffect(() => {
+    // if (isNew) {
+    //   redirect("/page");
+    // }
+  }, [isNew]);
 
   const [pageIndex, setPageIndex] = useState(0);
 
@@ -28,7 +38,7 @@ export default function Page() {
   ];
 
   return (
-    <div className="w-full min-h-screen h-full flex bg-white">
+    <div className="w-full min-h-screen h-full flex bg-[#FAFAFA]">
       {pageList[pageIndex]}
     </div>
   );

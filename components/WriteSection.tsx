@@ -1,14 +1,45 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/legacy/image";
+import { useRecoilState } from "recoil";
 
 import Icons from "assets/icons";
 import Modal from "components/Modal";
+import * as userApi from "apis/user";
+import { userProfileState } from "store";
 
 export default function WriteSection() {
+  const router = useRouter();
+  const [inputs, setInputs] = useRecoilState(userProfileState);
+
   const [inputList, setInputList] = useState([]);
   const [showModal, setShowModal] = useState(false);
+
+  const loadProfile = async () => {
+    const res = (await userApi.fetchProfile()) as any;
+
+    setInputs({
+      nickname: res.nickname ?? "",
+      explanation: res.explanation ?? "",
+      todayLink: res.today_link ?? "",
+    });
+  };
+
+  useEffect(() => {
+    loadProfile();
+  }, []);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = event.target;
+    const inputValue = type === "checkbox" ? checked : value;
+
+    setInputs({
+      ...inputs,
+      [name]: inputValue,
+    });
+  };
 
   return (
     <section className="mx-auto h-full ">
@@ -20,6 +51,9 @@ export default function WriteSection() {
             <input
               className="py-2 px-4 rounded-lg outline-none w-full h-11 max-w-[196px] bg-[#FAFAFA]  border-0 font-semibold text-base placeholder-[#A9A9A9]"
               placeholder="닉네임을 적어주세요"
+              name="nickname"
+              onChange={handleInputChange}
+              value={inputs.nickname}
             />
             <div className="w-full h-[1px] bg-[#E5E5E5] absolute" />
           </div>
@@ -29,6 +63,9 @@ export default function WriteSection() {
             <input
               className="py-2 px-4 rounded-lg outline-none w-full h-11 text-sm bg-[#FAFAFA]  border-0 font-semibold placeholder-[#A9A9A9]"
               placeholder="한줄로 나를 표현하기"
+              name="explanation"
+              onChange={handleInputChange}
+              value={inputs.explanation}
             />
             <div className="w-full h-[1px] bg-[#E5E5E5] absolute" />
           </div>
@@ -44,10 +81,17 @@ export default function WriteSection() {
             <input
               className="py-2 px-8 rounded-lg outline-none w-full h-11 text-sm bg-[#FAFAFA]  border-0 font-semibold placeholder-[#A9A9A9]"
               placeholder="링크로 나를 표현하기"
+              name="todayLink"
+              onChange={handleInputChange}
+              value={inputs.todayLink}
             />
             <div className="w-full h-[1px] bg-[#E5E5E5] absolute" />
             <div className="absolute right-[-35px] top-[11px]">
               <Image
+                onClick={() => {
+                  router.push("/link-history");
+                }}
+                className="cursor-pointer"
                 src={Icons.HistoryIcon}
                 width={24}
                 height={24}

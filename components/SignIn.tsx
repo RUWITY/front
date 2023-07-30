@@ -1,8 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { redirect } from "next/navigation";
+
+import useLocalStorage from "hooks/useLocalStorage";
 
 export default function Page() {
+  const [accessToken] = useLocalStorage("access_token", null);
+
+  if (accessToken) {
+    return redirect("/page");
+  }
+
   return (
     <div className=" mx-auto inline-flex justify-center items-center">
       <div className="flex flex-col">

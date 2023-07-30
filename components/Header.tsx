@@ -1,19 +1,48 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/legacy/image";
+import { useRecoilState } from "recoil";
 
+import { userProfileState } from "store";
+import * as userApi from "apis/user";
 import Icons from "assets/icons";
 import ShareButton from "components/ShareButton";
 
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
+  const [inputs, setInputs] = useRecoilState(userProfileState);
 
-  if (["/", "/userinfo"].includes(pathname)) {
+  const [profile, setProfile] = useState<any>();
+
+  const loadProfile = async () => {
+    const res = (await userApi.fetchProfile()) as any;
+
+    setProfile(res);
+  };
+
+  useEffect(() => {
+    loadProfile();
+  }, []);
+
+  const saveProfile = async () => {
+    const res = (await userApi.SaveProfile(
+      inputs.nickname,
+      inputs.explanation,
+      inputs.todayLink
+    )) as any;
+
+    if (res) {
+      alert("저장되었습니다.");
+    }
+  };
+
+  if (["/", "/userinfo", "/link-history"].includes(pathname)) {
     return (
       <header
-        className="fixed top-0 z-10 max-w-inherit w-full px-4 py-3 flex items-center justify-between h-15 bg-white max-w-[390px]"
+        className="fixed top-0 z-10 max-w-inherit w-full px-4 py-3 flex items-center justify-between h-15 bg-[#FAFAFA] max-w-[390px]"
         style={{
           left: "50%",
           transform: "translate(-50%, 0)",
@@ -46,11 +75,18 @@ export default function Header() {
         <img className="w-11 h-3" src="/logo.png" />
         <div className="flex  cursor-pointer ml-3 flex-1 max-w-[70%]">
           <p className="underline">wity.im/</p>
-          <p className="underline overflow-hidden text-ellipsis">222</p>
+          <p className="underline overflow-hidden text-ellipsis">
+            {profile?.page_url}
+          </p>
         </div>
       </div>
       <div className="flex items-center">
-        <button className="hover:cursor font-bold h-9 rounded-lg bg-primary-light text-primary mr-2 !rounded-4.5 w-24 bg-[#F3F2FC] text-[#7163E8]">
+        <button
+          className="hover:cursor font-bold h-9 rounded-lg bg-primary-light text-primary mr-2 !rounded-4.5 w-24 bg-[#F3F2FC] text-[#7163E8]"
+          onClick={() => {
+            saveProfile();
+          }}
+        >
           확인하기
         </button>
         <ShareButton />

@@ -11,6 +11,7 @@ export default function Terms({ setPageIndex }: any) {
     required2: false,
     optional: false,
   });
+  const hasFalseValue = Object.values(consent).some((value) => value === false);
 
   const handleRequiredChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -38,6 +39,7 @@ export default function Terms({ setPageIndex }: any) {
       consentState.required1 && consentState.required2 && consentState.optional
     );
   }
+  const isNext = consent.required1 && consent.required2;
 
   return (
     <div className=" mx-auto inline-flex justify-center items-center px-8">
@@ -107,25 +109,41 @@ export default function Terms({ setPageIndex }: any) {
             />
           </div>
         </div>
-        <div className=" mx-auto flex mb-16">
-          <div
-            className="text-xl mr-4 font-semibold"
-            onClick={() => {
+        <div
+          className=" mx-auto flex mb-16"
+          onClick={() => {
+            if (hasFalseValue) {
               setConsent({
                 required1: true,
                 required2: true,
                 optional: true,
               });
-            }}
-          >
-            모두동의
-          </div>
-          <div>
-            {isAllConsentsGranted(consent) ? "다 동의" : "다 동의 아님"}
-          </div>
+            } else {
+              setConsent({
+                required1: false,
+                required2: false,
+                optional: false,
+              });
+            }
+          }}
+        >
+          <div className="text-xl mr-4 font-semibold">모두동의</div>
+          <Image
+            className=" cursor-pointer"
+            src={
+              isAllConsentsGranted(consent)
+                ? Icons.TermActiveCheckIcon
+                : Icons.TermCheckIcon
+            }
+            width={28}
+            height={28}
+            alt="상세보기 아이콘"
+            onClick={() => {}}
+          />
         </div>
         <button
-          className=" text-base py-[14px] w-full bg-[#6F63E0] rounded-lg text-white font-semibold"
+          className=" text-base py-[14px] w-full bg-[#6F63E0] rounded-lg text-white font-semibold disabled:bg-[#E5E5E5]"
+          disabled={!isNext}
           onClick={() => {
             setPageIndex(2);
           }}

@@ -3,7 +3,7 @@ import DefaultLayout from "layouts/DefaultLayout";
 
 import Header from "components/Header";
 import BottomNav from "components/BottomNav";
-
+import Recoil from "components/Recoil";
 import "styles/globals.css";
 
 export const metadata: Metadata = {
@@ -28,13 +28,15 @@ export default function RootLayout({
         <meta name="author" content="링크지" />
       </head>
       <body>
-        <Header />
-        <DefaultLayout>
-          {/* <AuthSession> */}
-          <div>{children}</div>
-          {/* </AuthSession> */}
-        </DefaultLayout>
-        <BottomNav />
+        <Recoil>
+          <Header />
+          <DefaultLayout>
+            {/* <AuthSession> */}
+            <div>{children}</div>
+            {/* </AuthSession> */}
+          </DefaultLayout>
+          <BottomNav />
+        </Recoil>
       </body>
     </html>
   );

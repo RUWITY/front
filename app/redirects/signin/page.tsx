@@ -6,7 +6,7 @@ import useLocalStorage from "hooks/useLocalStorage";
 
 export default function Page({ searchParams }: any) {
   const { access_token, refresh_token } = searchParams;
-  console.log(searchParams);
+
   const [accessToken, setAccessToken] = useLocalStorage<string | null>(
     "access_token",
     null
@@ -16,9 +16,7 @@ export default function Page({ searchParams }: any) {
     "refresh_token",
     null
   );
-  const [a, fa] = useLocalStorage<string | null>("refresh_token22", null);
-  const dsa = "1";
-  console.log(refreshToken);
+
   useEffect(() => {
     setAccessToken(access_token.replace(/'/g, ""));
     setRefreshToken(refresh_token.replace(/'/g, ""));

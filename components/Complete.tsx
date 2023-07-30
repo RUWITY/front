@@ -1,15 +1,30 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+
+import * as userApi from "apis/user";
 
 export default function Complete() {
   const router = useRouter();
+  const [url, setUrl] = useState();
+
+  useEffect(() => {
+    loadProfile();
+  }, []);
+
+  const loadProfile = async () => {
+    const res = (await userApi.fetchProfile()) as any;
+
+    setUrl(res.page_url);
+  };
 
   return (
     <div className="mx-auto px-8 mt-[50px] bg-[#FAFAFA] text-center">
       <div className="text-xl font-semibold mb-4">
-        <span className="text-[#7163E8]">hiimmz_02</span>님, 링크지 가입을
-        환영해요!
+        <span className="text-[#7163E8]">{url}</span>님,
+        <br />
+        링크지 가입을 환영해요!
       </div>
       <div className=" text-xs">이제 나만의 프로필을 꾸미러 가볼까요?</div>
       <img src="/rectangle.png" className="w-[272px] h-[272px] mx-auto" />
