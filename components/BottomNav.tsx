@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/legacy/image";
 import { useRecoilState } from "recoil";
 
@@ -11,6 +11,7 @@ import Icons from "assets/icons";
 import Alert from "components/Alert";
 
 export default function BottomNav() {
+  const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const [inputs, setInputs] = useRecoilState(userProfileState);
 
@@ -41,7 +42,11 @@ export default function BottomNav() {
       }}
     >
       <div className="justify-between flex">
-        <button>
+        <button
+          onClick={() => {
+            router.push("/page");
+          }}
+        >
           <Image
             className="mx-auto mb-[2px]"
             src={Icons.PageIcon}

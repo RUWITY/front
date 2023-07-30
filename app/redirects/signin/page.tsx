@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { redirect } from "next/navigation";
+
 import useLocalStorage from "hooks/useLocalStorage";
 
 export default function Page({ searchParams }: any) {

@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/legacy/image";
 import { useRecoilState } from "recoil";
+import { redirect } from "next/navigation";
 
+import useLocalStorage from "hooks/useLocalStorage";
 import Icons from "assets/icons";
 import Modal from "components/Modal";
 import * as userApi from "apis/user";
@@ -13,9 +15,18 @@ import { userProfileState } from "store";
 export default function WriteSection() {
   const router = useRouter();
   const [inputs, setInputs] = useRecoilState(userProfileState);
-
+  const [accessToken, setAccessToken] = useLocalStorage<string | null>(
+    "access_token",
+    null
+  );
   const [inputList, setInputList] = useState([]);
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    if (!accessToken) {
+      redirect("/");
+    }
+  }, [accessToken]);
 
   const loadProfile = async () => {
     const res = (await userApi.fetchProfile()) as any;

@@ -9,10 +9,15 @@ import { userProfileState } from "store";
 import * as userApi from "apis/user";
 import Icons from "assets/icons";
 import ShareButton from "components/ShareButton";
+import useLocalStorage from "hooks/useLocalStorage";
 
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
+  const [accessToken, setAccessToken] = useLocalStorage<string | null>(
+    "access_token",
+    null
+  );
   const [inputs, setInputs] = useRecoilState(userProfileState);
 
   const [profile, setProfile] = useState<any>();
@@ -24,8 +29,10 @@ export default function Header() {
   };
 
   useEffect(() => {
-    loadProfile();
-  }, []);
+    if (accessToken) {
+      loadProfile();
+    }
+  }, [accessToken]);
 
   const saveProfile = async () => {
     const res = (await userApi.SaveProfile(

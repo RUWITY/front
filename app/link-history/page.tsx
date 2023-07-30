@@ -53,7 +53,6 @@ export default function Page() {
                   className="text-[#7163E8] text-[10px] cursor-pointer"
                   onClick={async () => {
                     const res = await userApi.changeTodayLink(item.id);
-                    console.log(res);
                   }}
                 >
                   프로필로 적용하기
