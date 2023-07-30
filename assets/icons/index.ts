@@ -8,6 +8,8 @@ import ShareIcon from "./share.svg";
 import ThemeIcon from "./theme.svg";
 import ArrowBackIcon from "./arrow_back_ios.svg";
 import InfoIcon from "./info.svg";
+import TermCheckIcon from "./term_check.svg";
+import TermActiveCheckIcon from "./term_active_check.svg";
 
 export const Icons = {
   AnalyzeIcon,
@@ -20,6 +22,8 @@ export const Icons = {
   ThemeIcon,
   ArrowBackIcon,
   InfoIcon,
+  TermCheckIcon,
+  TermActiveCheckIcon,
 };
 
 export default Icons;
