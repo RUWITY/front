@@ -1,13 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Terms from "components/Terms";
 import TermsDetail from "components/TermsDetail";
 import UserInform from "components/UserInform";
 import Complete from "components/Complete";
+import * as userApi from "apis/user";
 
 export default function Page() {
+  const dsa = () => {
+    const dsa = userApi.fetchUserType();
+    console.log(dsa);
+  };
+
+  useEffect(() => {
+    dsa();
+  }, []);
+
   const [pageIndex, setPageIndex] = useState(0);
 
   const pageList = [

@@ -8,9 +8,7 @@ export default function ShareButton({}: any) {
   const pathname = usePathname();
 
   const copyURL = async () => {
-    await navigator.clipboard.writeText(
-      "https://jade-liger-7be6fa.netlify.app" + pathname
-    );
+    await navigator.clipboard.writeText("https://linkg.netlify.app" + pathname);
 
     alert("클립보드에 링크가 복사되었어요.");
   };

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import DefaultLayout from "layouts/DefaultLayout";
-import AuthSession from "components/AuthSession";
+
 import Header from "components/Header";
 import BottomNav from "components/BottomNav";
 
@@ -30,9 +30,9 @@ export default function RootLayout({
       <body>
         <Header />
         <DefaultLayout>
-          <AuthSession>
-            <div>{children}</div>
-          </AuthSession>
+          {/* <AuthSession> */}
+          <div>{children}</div>
+          {/* </AuthSession> */}
         </DefaultLayout>
         <BottomNav />
       </body>

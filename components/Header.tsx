@@ -10,7 +10,7 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
 
-  if (["/signin", "/userinfo"].includes(pathname)) {
+  if (["/", "/userinfo"].includes(pathname)) {
     return (
       <header
         className="fixed top-0 z-10 max-w-inherit w-full px-4 py-3 flex items-center justify-between h-15 bg-white max-w-[390px]"

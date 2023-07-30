@@ -8,7 +8,7 @@ import Icons from "assets/icons";
 export default function BottomNav() {
   const pathname = usePathname();
 
-  if (["/signin", "/userinfo"].includes(pathname)) {
+  if (["/", "/userinfo"].includes(pathname)) {
     return <></>;
   }
 
