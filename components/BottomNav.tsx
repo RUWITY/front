@@ -1,16 +1,36 @@
 "use client";
 
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/legacy/image";
+import { useRecoilState } from "recoil";
 
+import * as userApi from "apis/user";
+import { userProfileState } from "store";
 import Icons from "assets/icons";
+import Alert from "components/Alert";
 
 export default function BottomNav() {
+  const [showModal, setShowModal] = useState(false);
+  const [inputs, setInputs] = useRecoilState(userProfileState);
+
   const pathname = usePathname();
 
   if (["/", "/userinfo", "/link-history"].includes(pathname)) {
     return <></>;
   }
+
+  const saveProfile = async () => {
+    const res = (await userApi.SaveProfile(
+      inputs.nickname,
+      inputs.explanation,
+      inputs.todayLink
+    )) as any;
+
+    if (res) {
+      alert("저장되었습니다.");
+    }
+  };
 
   return (
     <div
@@ -29,9 +49,15 @@ export default function BottomNav() {
             height={24}
             alt="페이지 아이콘"
           />
-          <div className=" text-[10px]">페이지</div>
+          <div className=" text-[10px] text-[#7163E8] font-semibold">
+            페이지
+          </div>
         </button>
-        <button>
+        <button
+          onClick={() => {
+            setShowModal(true);
+          }}
+        >
           <Image
             className="mx-auto mb-[2px]"
             src={Icons.ThemeIcon}
@@ -48,6 +74,9 @@ export default function BottomNav() {
               transform: "translate(-15%, -10%)",
               boxShadow: "0px 4px 20px 0px rgba(0, 0, 0, 0.20)",
             }}
+            onClick={() => {
+              saveProfile();
+            }}
           >
             <Image
               className="mb-[2px]"
@@ -57,9 +86,13 @@ export default function BottomNav() {
               alt="체크 아이콘"
             />
           </button>
-          <div className="text-[10px] mt-[23px]">확인하기</div>
+          <div className="text-[10px] mt-[30px]">확인하기</div>
         </div>
-        <button>
+        <button
+          onClick={() => {
+            setShowModal(true);
+          }}
+        >
           <Image
             className="mx-auto mb-[2px]"
             src={Icons.AnalyzeIcon}
@@ -69,7 +102,11 @@ export default function BottomNav() {
           />
           <div className=" text-[10px] text-center">분석</div>
         </button>
-        <button>
+        <button
+          onClick={() => {
+            setShowModal(true);
+          }}
+        >
           <Image
             className="mx-auto mb-[2px]"
             src={Icons.SettingIcon}
@@ -80,6 +117,12 @@ export default function BottomNav() {
           <div className=" text-[10px] text-center">설정</div>
         </button>
       </div>
+      <Alert
+        showModal={showModal}
+        setShowModal={setShowModal}
+        title="죄송합니다."
+        content="현재 버전에서는 제공되지 않는 서비스입니다."
+      />
     </div>
   );
 }

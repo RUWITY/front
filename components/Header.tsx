@@ -74,15 +74,15 @@ export default function Header() {
       <div className="flex items-center w-full">
         <img className="w-11 h-3" src="/logo.png" />
         <div className="flex  cursor-pointer ml-3 flex-1 max-w-[70%]">
-          <p className="underline">wity.im/</p>
-          <p className="underline overflow-hidden text-ellipsis">
+          <p className="underline text-xs">linkg.im/</p>
+          <p className="underline overflow-hidden text-ellipsis text-xs">
             {profile?.page_url}
           </p>
         </div>
       </div>
       <div className="flex items-center">
         <button
-          className="hover:cursor font-bold h-9 rounded-lg bg-primary-light text-primary mr-2 !rounded-4.5 w-24 bg-[#F3F2FC] text-[#7163E8]"
+          className="hover:cursor font-bold h-9 rounded-[22px] bg-primary-light text-base mr-2 !rounded-4.5 w-24 bg-[#F3F2FC] text-[#7163E8]"
           onClick={() => {
             saveProfile();
           }}

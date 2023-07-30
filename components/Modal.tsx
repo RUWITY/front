@@ -17,8 +17,8 @@ export default function Modal({
   inputList,
 }: MyModalProps) {
   const itemList = [
-    { title: "✍🏻  텍스트", value: "text" },
-    { title: "🔗  링크", value: "link" },
+    { title: "✍️ 텍스트 (단순 제목 형태)", value: "text" },
+    { title: "🔗 링크 (URL로 이동가능한 버튼)", value: "link" },
   ];
 
   return (
@@ -51,9 +51,11 @@ export default function Modal({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title className="text-2xl text-black">
-                    어떤 탭을 추가할까요?
+                <Dialog.Panel className="w-full max-w-[358px] transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <Dialog.Title className=" text-xl text-black">
+                    어떤 탭을
+                    <br />
+                    추가하고 싶으신가요?
                   </Dialog.Title>
                   <div className="mt-2">
                     <div className="space-y-2">
