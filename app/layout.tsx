@@ -1,9 +1,11 @@
 import { Metadata } from "next";
-import DefaultLayout from "layouts/DefaultLayout";
 
+import DefaultLayout from "layouts/DefaultLayout";
 import Header from "components/Header";
 import BottomNav from "components/BottomNav";
 import Recoil from "components/Recoil";
+import Analytics from "components/Analytics";
+
 import "styles/globals.css";
 
 export const metadata: Metadata = {
@@ -35,6 +37,7 @@ export default function RootLayout({
             <div>{children}</div>
             {/* </AuthSession> */}
           </DefaultLayout>
+          <Analytics />
           <BottomNav />
         </Recoil>
       </body>
