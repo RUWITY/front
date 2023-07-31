@@ -20,14 +20,16 @@ export default function Page() {
         <div className="mb-2 text-sm">링크는 링크지</div>
         <img src="/logo.png" className="w-[204px] h-[57px] mb-40" />
         <Link href="http://43.201.37.164:3000/kakao-login/login">
-          <button className="cursor-pointer w-full h-13 rounded-lg bg-[#FEE500] text-black">
-            카카오 로그인
-            <Image
-              src={Icons.KakaoIcon}
-              width={24}
-              height={24}
-              alt="카카오 아이콘"
-            />
+          <button className="cursor-pointer w-full rounded-lg bg-[#FEE500] text-black py-2 inline-flex items-center relative justify-center">
+            <div className="absolute left-2 top-2">
+              <Image
+                src={Icons.KakaoIcon}
+                width={24}
+                height={24}
+                alt="카카오 아이콘"
+              />
+            </div>
+            <span className="text-base">카카오로 계속하기</span>
           </button>
         </Link>
       </div>
