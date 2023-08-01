@@ -35,6 +35,7 @@ export default function Header() {
       loadProfile();
     }
   }, [accessToken]);
+  const actions = [{ column: 'link', tap_id: 1, title: '링크 제목', url: '링크 url', toggle_state: false, folded_state: false, }]
 
   const saveProfile = async () => {
     const formData = new FormData();
@@ -45,7 +46,8 @@ export default function Header() {
       inputs.nickname,
       inputs.explanation,
       inputs.todayLink,
-      formData
+      formData,
+      actions
     )) as any;
 
     if (res) {

@@ -1,5 +1,4 @@
 import customAxios from "apis";
-import { imgFileState } from "store";
 
 export async function fetchUserType() {
   const res = await customAxios.get("/user-user/user_type");
@@ -25,7 +24,7 @@ export async function fetchProfile() {
   return res;
 }
 
-export async function SaveProfile(nickname: any, explanation: any, todayLink: any, formData: any) {
+export async function SaveProfile(nickname: any, explanation: any, todayLink: any, formData: any, actions: any) {
   const headers = {
     "Content-Type": "multipart/form-data",
   };
@@ -37,6 +36,7 @@ export async function SaveProfile(nickname: any, explanation: any, todayLink: an
       explanation,
       today_link: todayLink,
       formData,
+      actions,
     },
     { headers },
   );

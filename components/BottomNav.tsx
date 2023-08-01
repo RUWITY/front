@@ -6,7 +6,7 @@ import Image from "next/legacy/image";
 import { useRecoilState } from "recoil";
 
 import * as userApi from "apis/user";
-import { userProfileState } from "store";
+import { userProfileState, imgFileState } from "store";
 import Icons from "assets/icons";
 import Alert from "components/Alert";
 import useLocalStorage from "hooks/useLocalStorage";
@@ -15,11 +15,13 @@ export default function BottomNav() {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const [inputs, setInputs] = useRecoilState(userProfileState);
+  const [imgFile, setImgFile] = useRecoilState(imgFileState);
   const [accessToken, setAccessToken] = useLocalStorage<string | null>(
     "access_token",
     null
   );
   const pathname = usePathname();
+
   if (!accessToken) {
     return <></>
   }
@@ -27,11 +29,19 @@ export default function BottomNav() {
     return <></>;
   }
 
+  const actions = [{ column: 'link', tap_id: 1, title: '링크 제목', url: '링크 url', toggle_state: false, folded_state: false, }]
+
   const saveProfile = async () => {
+    const formData = new FormData();
+
+    formData.append('profile', imgFile);
+
     const res = (await userApi.SaveProfile(
       inputs.nickname,
       inputs.explanation,
-      inputs.todayLink
+      inputs.todayLink,
+      formData,
+      actions
     )) as any;
 
     if (res) {
