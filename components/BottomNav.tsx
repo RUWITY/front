@@ -9,14 +9,20 @@ import * as userApi from "apis/user";
 import { userProfileState } from "store";
 import Icons from "assets/icons";
 import Alert from "components/Alert";
+import useLocalStorage from "hooks/useLocalStorage";
 
 export default function BottomNav() {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const [inputs, setInputs] = useRecoilState(userProfileState);
-
+  const [accessToken, setAccessToken] = useLocalStorage<string | null>(
+    "access_token",
+    null
+  );
   const pathname = usePathname();
-
+  if (!accessToken) {
+    return <></>
+  }
   if (["/", "/userinfo", "/link-history"].includes(pathname)) {
     return <></>;
   }

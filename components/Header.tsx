@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Image from "next/legacy/image";
 import { useRecoilState } from "recoil";
 
-import { userProfileState } from "store";
+import { userProfileState, imgFileState } from "store";
 import * as userApi from "apis/user";
 import Icons from "assets/icons";
 import ShareButton from "components/ShareButton";
@@ -19,6 +19,8 @@ export default function Header() {
     null
   );
   const [inputs, setInputs] = useRecoilState(userProfileState);
+  const [imgFile, setImgFile] = useRecoilState(imgFileState);
+
 
   const [profile, setProfile] = useState<any>();
 
@@ -35,16 +37,25 @@ export default function Header() {
   }, [accessToken]);
 
   const saveProfile = async () => {
+    const formData = new FormData();
+
+    formData.append('profile', imgFile);
+
     const res = (await userApi.SaveProfile(
       inputs.nickname,
       inputs.explanation,
-      inputs.todayLink
+      inputs.todayLink,
+      formData
     )) as any;
 
     if (res) {
       alert("저장되었습니다.");
     }
   };
+
+  if (!accessToken) {
+    return <></>
+  }
 
   if (["/", "/userinfo", "/link-history"].includes(pathname)) {
     return (

@@ -32,21 +32,11 @@ export default function Page() {
       <div className="mt-[60px] text-[10px] w-full">
         <div className="w-full space-y-2">
           {urlList.map((item: any) => (
-            <div
-              className="bg-white px-4 py-2 w-full flex flex-col rounded-lg"
-              key={item.id}
-            >
+            <div className="bg-white px-4 py-2 w-full flex flex-col rounded-lg" key={item.id}>
               <div className="flex justify-between ">
                 <div className="text-[#A9A9A9]">
-                  {String(
-                    new Date(item.created_at).getFullYear() - 2000
-                  ).padStart(2, "0")}
-                  .
-                  {String(new Date(item.created_at).getMonth() + 1).padStart(
-                    2,
-                    "0"
-                  )}
-                  .
+                  {String(new Date(item.created_at).getFullYear() - 2000).padStart(2, "0")}.
+                  {String(new Date(item.created_at).getMonth() + 1).padStart(2, "0")}.
                   {String(new Date(item.created_at).getDate()).padStart(2, "0")}
                 </div>
                 <div

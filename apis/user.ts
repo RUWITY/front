@@ -1,4 +1,5 @@
 import customAxios from "apis";
+import { imgFileState } from "store";
 
 export async function fetchUserType() {
   const res = await customAxios.get("/user-user/user_type");
@@ -24,16 +25,21 @@ export async function fetchProfile() {
   return res;
 }
 
-export async function SaveProfile(
-  nickname: any,
-  explanation: any,
-  todayLink: any
-) {
-  const res = await customAxios.patch(`/user-user`, {
-    nickname,
-    explanation,
-    today_link: todayLink,
-  });
+export async function SaveProfile(nickname: any, explanation: any, todayLink: any, formData: any) {
+  const headers = {
+    "Content-Type": "multipart/form-data",
+  };
+
+  const res = await customAxios.patch(
+    `/user-user/profile`,
+    {
+      nickname,
+      explanation,
+      today_link: todayLink,
+      formData,
+    },
+    { headers },
+  );
   return res;
 }
 

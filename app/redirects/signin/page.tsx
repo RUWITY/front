@@ -8,15 +8,8 @@ import useLocalStorage from "hooks/useLocalStorage";
 export default function Page({ searchParams }: any) {
   const { access_token, refresh_token } = searchParams;
 
-  const [accessToken, setAccessToken] = useLocalStorage<string | null>(
-    "access_token",
-    null
-  );
-
-  const [refreshToken, setRefreshToken] = useLocalStorage<string | null>(
-    "refresh_token",
-    null
-  );
+  const [accessToken, setAccessToken] = useLocalStorage<string | null>("access_token", null);
+  const [refreshToken, setRefreshToken] = useLocalStorage<string | null>("refresh_token", null);
 
   useEffect(() => {
     setAccessToken(access_token.replace(/'/g, ""));

@@ -14,15 +14,31 @@ export default function UserInform({ setPageIndex }: any) {
   const hasTrueValue = Object.values(inputs).every((value) => value);
 
   const { url, gender, age } = inputs;
+  function validateInput(input: any) {
 
+    const regex = /^[A-Za-z0-9_]+$/;
+
+    return regex.test(input);
+  }
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = event.target;
     const inputValue = type === "checkbox" ? checked : value;
+    if (name === 'url') {
 
-    setInputs({
-      ...inputs,
-      [name]: inputValue,
-    });
+      console.log(inputs.url, validateInput(value))
+      if (!validateInput(value)) {
+        return
+      }
+      setInputs({
+        ...inputs,
+        url: value
+      });
+    } else {
+      setInputs({
+        ...inputs,
+        [name]: inputValue,
+      });
+    }
   };
 
   const loadURLDuplication = async (url: any) => {
@@ -37,9 +53,9 @@ export default function UserInform({ setPageIndex }: any) {
     }
   };
 
-  const dsa = () => {
-    const res = userApi.fetchReport({ url, gender, age }) as any;
-
+  const dsa = async () => {
+    const res = await userApi.fetchReport({ url, gender, age }) as any;
+    console.log(res)
     if (res) {
       setPageIndex((prev: number) => prev + 1);
     }
@@ -53,7 +69,7 @@ export default function UserInform({ setPageIndex }: any) {
         나를 표현할 개성있는🎈
         <br /> 페이지 주소를 만들어 주세요
       </div>
-      <div className=" bg-white py-3 px-2 rounded-lg">
+      <div className=" bg-white py-3 px-7 rounded-lg">
         <div className=" text-sm font-semibold mb-1">페이지 이름</div>
         <div className="text-[#7163E8] text-xs mb-4">
           *영어 대소문자, 숫자, 특수문자 (_)만 사용가능
@@ -80,10 +96,10 @@ export default function UserInform({ setPageIndex }: any) {
           </button>
         </div>
       </div>
-      <div className=" bg-white py-3 px-2 rounded-lg">
+      <div className=" bg-white py-3 px-7 rounded-lg">
         <div className=" text-sm font-semibold mb-5">성별 / 나이</div>
         <div className="text-xs mb-3">성별</div>
-        <div className="flex space-x-11 mb-5">
+        <div className="flex space-x-11 mb-5 items-center">
           <input
             id="male"
             value="male"
@@ -112,7 +128,7 @@ export default function UserInform({ setPageIndex }: any) {
           />
           표현안함
         </div>
-        <div>나이</div>
+        <div className="text-xs mb-3">나이</div>
         <input
           type="number"
           placeholder="고객님의 나이가 궁금해요"

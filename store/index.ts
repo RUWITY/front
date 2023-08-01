@@ -8,3 +8,8 @@ export const userProfileState = atom<any>({
     todayLink: "",
   },
 });
+
+export const imgFileState = atom<any>({
+  key: "imgFile",
+  default: null,
+});

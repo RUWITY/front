@@ -10,3 +10,9 @@ export async function AddUrlView(id: any) {
 
   return res;
 }
+
+export async function fetchUrl(id: any) {
+  const res = await customAxios.get(`/${id}`);
+
+  return res;
+}

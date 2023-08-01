@@ -7,6 +7,8 @@ import Recoil from "components/Recoil";
 import Analytics from "components/Analytics";
 
 import "styles/globals.css";
+import "styles/reset.css";
+import "styles/override.css";
 
 export const metadata: Metadata = {
   title: "링크지",
@@ -14,11 +16,7 @@ export const metadata: Metadata = {
   keywords: "오늘의 링크, 링크, 링크지",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
       <head>
@@ -33,9 +31,7 @@ export default function RootLayout({
         <Recoil>
           <Header />
           <DefaultLayout>
-            {/* <AuthSession> */}
             <div>{children}</div>
-            {/* </AuthSession> */}
           </DefaultLayout>
           <Analytics />
           <BottomNav />

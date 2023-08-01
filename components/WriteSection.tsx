@@ -1,24 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/legacy/image";
-import { useRecoilState } from "recoil";
+import { useRecoilState, } from "recoil";
 import { redirect } from "next/navigation";
 
 import useLocalStorage from "hooks/useLocalStorage";
 import Icons from "assets/icons";
 import Modal from "components/Modal";
 import * as userApi from "apis/user";
-import { userProfileState } from "store";
+import { userProfileState, imgFileState } from "store";
 
 export default function WriteSection() {
   const router = useRouter();
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const [inputs, setInputs] = useRecoilState(userProfileState);
+  const [imgFile, setImgFile] = useRecoilState(imgFileState);
+
   const [accessToken, setAccessToken] = useLocalStorage<string | null>(
     "access_token",
     null
   );
+
   const [inputList, setInputList] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
@@ -52,12 +56,49 @@ export default function WriteSection() {
     });
   };
 
+  const onUploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+    const file = e.target.files[0];
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImgFile(reader.result);
+    };
+
+  };
+
+  const onUploadImageButtonClick = () => {
+    if (!inputRef.current) {
+      return;
+    }
+    inputRef.current.click();
+  };
+
   return (
     <section className="mx-auto h-full ">
       <div className="flex flex-col mb-4 rounded-lg  min-h-[3rem] justify-center">
         <div className="mb-7">👤 프로필</div>
         <div className="flex mb-6">
-          <div className="w-[120px] h-[120px] bg-[#F3F2FD] rounded-[50%] mr-[22px]" />
+          <input
+            type="file"
+            accept="image/*"
+            name="thumbnail"
+            ref={inputRef}
+            onChange={onUploadImage}
+            className="hidden"
+          />
+          <div className="relative cursor-pointer mr-[22px]" onClick={onUploadImageButtonClick}>
+            <img
+              src={imgFile ?? "https://i.pinimg.com/550x/f3/c9/6c/f3c96c43766c04eaa1b773eb38ef531e.jpg"}
+              alt="프로필 이미지"
+              className="w-24 h-24 rounded-[50%] mx-auto"
+            />
+            <div className="absolute bottom-2 w-6 h-6 right-[40%]">
+            </div>
+          </div>
           <div className="relative h-11 w-full max-w-[196px]">
             <input
               className="py-2 px-4 rounded-lg outline-none w-full h-11 max-w-[196px] bg-[#FAFAFA]  border-0 font-semibold text-base placeholder-[#A9A9A9]"

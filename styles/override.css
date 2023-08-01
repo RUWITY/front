@@ -1,0 +1,43 @@
+label {
+  font-size: 18px;
+  line-height: 2rem;
+  padding: 0.2em 0.4em;
+}
+
+[type="radio"],
+span {
+  vertical-align: middle;
+}
+
+[type="radio"] {
+  appearance: none;
+  border: max(2px, 0.1em) solid gray;
+  border-radius: 50%;
+  width: 1.25em;
+  height: 1.25em;
+  
+}
+
+[type="radio"]:checked {
+  border: 0.4em solid #7163E8;
+}
+
+[type="radio"]:focus-visible {
+  outline-offset: max(2px, 0.1em);
+  outline: max(2px, 0.1em) dotted #7163E8;
+}
+
+/* Global CSS */
+fieldset {
+  display: flex;
+  justify-content: center;
+  border: none;
+  margin: 0;
+  padding: 40px 20px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

@@ -37,9 +37,5 @@ export default function Page() {
     <Complete />,
   ];
 
-  return (
-    <div className="w-full min-h-screen h-full flex bg-[#FAFAFA]">
-      {pageList[pageIndex]}
-    </div>
-  );
+  return <div className="w-full min-h-screen h-full flex bg-[#FAFAFA]">{pageList[pageIndex]}</div>;
 }
