@@ -3,8 +3,8 @@ import Test from "components/Test";
 
 export default async function Page(props: any) {
 
-  console.log(props)
-  return <Test searchParams={props} />
+  console.log(props.searchParams)
+  return <Test searchParams={props.searchParams} />
 }
 
 
