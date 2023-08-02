@@ -1,4 +1,4 @@
-"use client";
+
 
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
@@ -195,7 +195,7 @@ export default function WriteSection() {
         }
         if (tab.column === "link") {
           return (
-            <div className="flex flex-col mb-4 rounded-lg bg-white min-h-[3rem] justify-center py-3 px-4">
+            <div className="flex flex-col mb-4 rounded-lg bg-white min-h-[3rem] justify-center py-3 px-4" key={tab.id}>
               <div className="mb-[14px]">🔗 링크</div>
               <input
                 className="py-2 px-4 rounded-lg outline-none focus:border-solid focus:border-primary focus:border w-full data-[state=invalid]:focus:border-solid data-[state=invalid]:focus:border-red-500 data-[state=invalid]:focus:border bg-neutral-100 h-11 text-sm"

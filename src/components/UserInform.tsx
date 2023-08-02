@@ -1,4 +1,4 @@
-"use client";
+
 
 import * as userApi from "src/pages/apis/user";
 import { useState } from "react";
