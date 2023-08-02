@@ -2,23 +2,31 @@
 
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { createTabText, createTabLink } from "apis/tab";
 
 interface MyModalProps {
   showModal: any;
   setShowModal: any;
-  setInputList: any;
-  inputList: any;
+  loadTabList: any
 }
 
 export default function Modal({
   showModal,
   setShowModal,
-  setInputList,
-  inputList,
+  loadTabList
 }: MyModalProps) {
+
+  const dsa = async () => {
+    await createTabText()
+  }
+
+  const dsa2 = async () => {
+    await createTabLink()
+  }
+
   const itemList = [
-    { title: "✍️ 텍스트 (단순 제목 형태)", value: "text" },
-    { title: "🔗 링크 (URL로 이동가능한 버튼)", value: "link" },
+    { title: "✍️ 텍스트 (단순 제목 형태)", value: "text", onClick: dsa },
+    { title: "🔗 링크 (URL로 이동가능한 버튼)", value: "link", onClick: dsa2 },
   ];
 
   return (
@@ -59,12 +67,15 @@ export default function Modal({
                   </Dialog.Title>
                   <div className="mt-2">
                     <div className="space-y-2">
-                      {itemList.map((item) => (
+                      {itemList.map((item: any) => (
                         <div
                           className="w-full h-full flex items-center p-4 bg-[#F3F2FC] rounded-md font-bold cursor-pointer"
-                          onClick={() => {
-                            setInputList([...inputList, item.value]);
+                          onClick={async () => {
+
+                            await item.onClick()
+                            await loadTabList()
                             setShowModal(false);
+
                           }}
                         >
                           {item.title}

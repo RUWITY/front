@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 function getInitialValue<T>(key: string, initialValue: T): T {
   if (process.browser) {
@@ -11,10 +11,10 @@ function getInitialValue<T>(key: string, initialValue: T): T {
 
 function useLocalStorage<T>(
   key: string,
-  initialValue: T
+  initialValue: T,
 ): [T, (value: T) => void] {
   const [storedValue, setStoredValue] = useState<T>(() =>
-    getInitialValue<T>(key, initialValue)
+    getInitialValue<T>(key, initialValue),
   );
 
   const setValue = (value: T) => {
@@ -25,7 +25,7 @@ function useLocalStorage<T>(
       }
       setStoredValue(value);
     } catch (error) {
-      console.error("Error saving to localStorage:", error);
+      console.error('Error saving to localStorage:', error);
     }
   };
 

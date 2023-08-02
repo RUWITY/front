@@ -51,7 +51,7 @@ export default function Terms({ setPageIndex }: any) {
         </div>
         <div className="mx-12 flex flex-col space-y-4 text-xs text-[#A9A9A9] mb-11">
           <div className="flex justify-between">
-            <label className="flex p-2 cursor-pointer">
+            <label className="flex p-2 cursor-pointer items-center">
               <div className="w-6 h-6 p-1 flex justify-center items-center mr-2">
                 <input
                   type="checkbox"
@@ -70,7 +70,7 @@ export default function Terms({ setPageIndex }: any) {
                   alt="체크 아이콘"
                 />
               </div>
-              <span className="leading-6te  ">[필수] 서비스 이용약관 동의</span>
+              <span className="text-xs leading-[24px]">[필수] 서비스 이용약관 동의</span>
             </label>
             <Image
               className=" cursor-pointer"
@@ -103,7 +103,7 @@ export default function Terms({ setPageIndex }: any) {
                   alt="체크 아이콘"
                 />
               </div>
-              <span className="leading-6">
+              <span className="text-xs leading-[24px]">
                 [필수] 개인정보 수집 및 이용동의
               </span>
             </label>
@@ -139,7 +139,7 @@ export default function Terms({ setPageIndex }: any) {
                   alt="체크 아이콘"
                 />
               </div>
-              <span className="leading-6">(선택) 마케팅 정보 수신 동의</span>
+              <span className="text-xs leading-[24px]">(선택) 마케팅 정보 수신 동의</span>
             </label>
             <Image
               className=" cursor-pointer"
@@ -186,7 +186,7 @@ export default function Terms({ setPageIndex }: any) {
           />
         </div>
         <button
-          className=" text-base py-[14px] w-full bg-[#6F63E0] rounded-lg text-white font-semibold disabled:bg-[#E5E5E5]"
+          className=" text-base py-[14px] w-full bg-[#6F63E0] rounded-lg text-white font-semibold disabled:bg-[#E5E5E5] disabled:text-black disabled:font-normal"
           disabled={!isNext}
           onClick={() => {
             setPageIndex(2);

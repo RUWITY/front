@@ -10,7 +10,8 @@ import useLocalStorage from "hooks/useLocalStorage";
 import Icons from "assets/icons";
 import Modal from "components/Modal";
 import * as userApi from "apis/user";
-import { userProfileState, imgFileState } from "store";
+import * as tabApi from "apis/tab";
+import { userProfileState, imgFileState, tabListState } from "store";
 
 export default function WriteSection() {
   const router = useRouter();
@@ -23,8 +24,15 @@ export default function WriteSection() {
     null
   );
 
-  const [inputList, setInputList] = useState([]);
+
   const [showModal, setShowModal] = useState(false);
+  const [tabList, setTabList] = useRecoilState<any>(tabListState);
+
+  const loadTabList = async () => {
+    const res = await tabApi.fetchTabList() as any
+    console.log(res)
+    setTabList(res)
+  }
 
   useEffect(() => {
     if (!accessToken) {
@@ -40,10 +48,13 @@ export default function WriteSection() {
       explanation: res.explanation ?? "",
       todayLink: res.today_link ?? "",
     });
+
+    setImgFile(res.profile)
   };
 
   useEffect(() => {
     loadProfile();
+    loadTabList();
   }, []);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,7 +87,7 @@ export default function WriteSection() {
     }
     inputRef.current.click();
   };
-
+  console.log(inputs)
   return (
     <section className="mx-auto h-full ">
       <div className="flex flex-col mb-4 rounded-lg  min-h-[3rem] justify-center">
@@ -92,7 +103,7 @@ export default function WriteSection() {
           />
           <div className="relative cursor-pointer mr-[22px]" onClick={onUploadImageButtonClick}>
             <img
-              src={imgFile ?? "https://i.pinimg.com/550x/f3/c9/6c/f3c96c43766c04eaa1b773eb38ef531e.jpg"}
+              src={imgFile ?? 'https://i.pinimg.com/550x/f3/c9/6c/f3c96c43766c04eaa1b773eb38ef531e.jpg'}
               alt="프로필 이미지"
               className="w-24 h-24 rounded-[50%] mx-auto"
             />
@@ -163,33 +174,48 @@ export default function WriteSection() {
       >
         + 탭 추가
       </button>
-      {inputList.map((input: any) => {
-        if (input === "text")
+      {tabList.map((tab: any) => {
+        if (tab.column === "text") {
           return (
-            <div className="flex flex-col mb-4 rounded-lg bg-white min-h-[3rem] justify-center py-3 px-4">
+            <div className="flex flex-col mb-4 rounded-lg bg-white min-h-[3rem] justify-center py-3 px-4" key={tab.id}>
               <div className="mb-[14px]">✍️ 텍스트</div>
               <input
                 className="py-2 px-4 rounded-lg outline-none focus:border-solid focus:border-primary focus:border w-full data-[state=invalid]:focus:border-solid data-[state=invalid]:focus:border-red-500 data-[state=invalid]:focus:border bg-neutral-100 h-11 text-sm"
-                placeholder="텍스트로 나를 표현하기"
+                placeholder={tab.context}
+                id={tab.tap_id}
+                onChange={(e) => {
+                  const updatedItems = tabList.map((item: any) =>
+                    item.tap_id === Number(e.target.id) ? { ...item, context: e.target.value } : item
+                  );
+                  setTabList(updatedItems)
+                }}
               />
             </div>
           );
-        if (input === "link")
+        }
+        if (tab.column === "link") {
           return (
             <div className="flex flex-col mb-4 rounded-lg bg-white min-h-[3rem] justify-center py-3 px-4">
               <div className="mb-[14px]">🔗 링크</div>
               <input
                 className="py-2 px-4 rounded-lg outline-none focus:border-solid focus:border-primary focus:border w-full data-[state=invalid]:focus:border-solid data-[state=invalid]:focus:border-red-500 data-[state=invalid]:focus:border bg-neutral-100 h-11 text-sm"
                 placeholder="링크로 나를 표현하기"
+                id={tab.id}
+                onChange={(e) => {
+                  const updatedItems = tabList.map((item: any) =>
+                    item.id === Number(e.target.id) ? { ...item, context: e.target.value } : item
+                  );
+                  setTabList(updatedItems)
+                }}
               />
             </div>
           );
+        }
       })}
       <Modal
         showModal={showModal}
         setShowModal={setShowModal}
-        setInputList={setInputList}
-        inputList={inputList}
+        loadTabList={loadTabList}
       />
     </section>
   );

@@ -67,10 +67,12 @@ export default function Page({ params }: { params: { id: string } }) {
           <div className=" text-white text-sm font-semibold mb-5">요즘 듣고있는 노래!</div>
           <div className=" py-5 text-[#7163E8] font-semibold text-sm bg-white rounded-xl mb-11">링크입력</div>
           <div className=" text-white text-sm font-semibold mb-6">링크지는 언제나 최고의 웹프로필을 지원합니다</div>
-          <button className="w-full bg-white py-5 px-5 inline-flex items-center rounded-xl">
-            <img src="/logo.png" className="w-[77px] h-5 mr-6" />
-            <div className=" text-[#7163E8] font-semibold">링크지 홈페이지🏠</div>
-          </button>
+          <Link href='/'>
+            <button className="w-full bg-white py-5 px-5 inline-flex items-center rounded-xl">
+              <img src="/logo.png" className="w-[77px] h-5 mr-6" />
+              <div className=" text-[#7163E8] font-semibold">링크지 홈페이지🏠</div>
+            </button>
+          </Link>
         </main>
       </div>
     </div>

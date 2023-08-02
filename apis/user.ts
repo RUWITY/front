@@ -1,7 +1,7 @@
-import customAxios from "apis";
+import customAxios from 'apis';
 
 export async function fetchUserType() {
-  const res = await customAxios.get("/user-user/user_type");
+  const res = await customAxios.get('/user-user/user_type');
   return res;
 }
 
@@ -11,10 +11,11 @@ export async function fetchURLDuplication(url: any) {
 }
 
 export async function fetchReport({ url, gender, age }: any) {
+  console.log(url, gender, Number(age));
   const res = await customAxios.post(`/user-user/report`, {
-    page_url: url,
-    gender: gender,
-    age: Number(age),
+    page_url: 'dsadas',
+    gender: 'male',
+    age: 23,
   });
   return res;
 }
@@ -24,9 +25,15 @@ export async function fetchProfile() {
   return res;
 }
 
-export async function SaveProfile(nickname: any, explanation: any, todayLink: any, formData: any, actions: any) {
+export async function SaveProfile(
+  nickname: any,
+  explanation: any,
+  todayLink: any,
+  formData: any,
+  actions: any,
+) {
   const headers = {
-    "Content-Type": "multipart/form-data",
+    'Content-Type': 'multipart/form-data',
   };
 
   const res = await customAxios.patch(

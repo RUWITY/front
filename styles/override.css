@@ -4,27 +4,29 @@ label {
   padding: 0.2em 0.4em;
 }
 
-[type="radio"],
+[type='radio'],
 span {
   vertical-align: middle;
 }
 
-[type="radio"] {
+[type='radio'] {
   appearance: none;
   border: max(2px, 0.1em) solid gray;
   border-radius: 50%;
   width: 1.25em;
   height: 1.25em;
-  
 }
 
-[type="radio"]:checked {
-  border: 0.4em solid #7163E8;
+[type='radio']:checked {
+  border: 0.4em solid #7163e8;
+}
+[type='radio']:hover {
+  cursor: pointer;
 }
 
-[type="radio"]:focus-visible {
+[type='radio']:focus-visible {
   outline-offset: max(2px, 0.1em);
-  outline: max(2px, 0.1em) dotted #7163E8;
+  outline: max(2px, 0.1em) dotted #7163e8;
 }
 
 /* Global CSS */

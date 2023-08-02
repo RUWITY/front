@@ -4,7 +4,7 @@ import Image from "next/legacy/image";
 import { usePathname } from "next/navigation";
 
 import Icons from "assets/icons";
-export default function ShareButton({}: any) {
+export default function ShareButton({ }: any) {
   const pathname = usePathname();
 
   const copyURL = async () => {

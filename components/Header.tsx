@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Image from "next/legacy/image";
 import { useRecoilState } from "recoil";
 
-import { userProfileState, imgFileState } from "store";
+import { userProfileState, imgFileState, tabListState } from "store";
 import * as userApi from "apis/user";
 import Icons from "assets/icons";
 import ShareButton from "components/ShareButton";
@@ -13,13 +13,14 @@ import useLocalStorage from "hooks/useLocalStorage";
 
 export default function Header() {
   const router = useRouter();
-  const pathname = usePathname();
+  const pathname = usePathname() as any
   const [accessToken, setAccessToken] = useLocalStorage<string | null>(
     "access_token",
     null
   );
   const [inputs, setInputs] = useRecoilState(userProfileState);
   const [imgFile, setImgFile] = useRecoilState(imgFileState);
+  const [tabList, setTabList] = useRecoilState(tabListState);
 
 
   const [profile, setProfile] = useState<any>();
@@ -35,19 +36,21 @@ export default function Header() {
       loadProfile();
     }
   }, [accessToken]);
-  const actions = [{ column: 'link', tap_id: 1, title: '링크 제목', url: '링크 url', toggle_state: false, folded_state: false, }]
+
+  const actions = tabList as any
 
   const saveProfile = async () => {
     const formData = new FormData();
 
     formData.append('profile', imgFile);
+    formData.append('actions', actions);
 
     const res = (await userApi.SaveProfile(
       inputs.nickname,
       inputs.explanation,
       inputs.todayLink,
       formData,
-      actions
+      actions,
     )) as any;
 
     if (res) {
