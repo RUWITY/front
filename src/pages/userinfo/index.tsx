@@ -1,7 +1,7 @@
 
 
 import { useEffect, useState } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/router";
 
 import Terms from "src/components/Terms";
 import TermsDetail from "src/components/TermsDetail";
@@ -10,6 +10,7 @@ import Complete from "src/components/Complete";
 import * as userApi from "src/apis/user";
 
 export default function SignInPage() {
+  const router = useRouter()
   const [isNew, setIsNew] = useState();
 
   const loadUserType = async () => {
@@ -23,9 +24,9 @@ export default function SignInPage() {
   }, []);
 
   useEffect(() => {
-    // if (isNew) {
-    //   redirect("/page");
-    // }
+    if (isNew) {
+      router.push('/page')
+    }
   }, [isNew]);
 
   const [pageIndex, setPageIndex] = useState(0);

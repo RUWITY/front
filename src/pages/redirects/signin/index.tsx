@@ -1,13 +1,10 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
-
 import useLocalStorage from "src/hooks/useLocalStorage";
 
 export async function getServerSideProps({ query }: any) {
-
   const { access_token, refresh_token } = query
-
 
   return { props: { access_token, refresh_token } }
 }

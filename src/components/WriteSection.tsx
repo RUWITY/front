@@ -1,11 +1,9 @@
 
 
 import { useEffect, useState, useRef } from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/legacy/image";
 import { useRecoilState, } from "recoil";
-import { redirect } from "next/navigation";
-
+import { useRouter } from "next/router";
 import useLocalStorage from "src/hooks/useLocalStorage";
 import Icons from "src/assets/icons";
 import Modal from "src/components/Modal";
@@ -36,7 +34,7 @@ export default function WriteSection() {
 
   useEffect(() => {
     if (!accessToken) {
-      redirect("/");
+      router.push("/");
     }
   }, [accessToken]);
 
