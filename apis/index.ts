@@ -2,7 +2,7 @@ import Axios, { AxiosResponse } from 'axios';
 
 export const createApi = (headers: any) => {
   const _customAxios = Axios.create({
-    baseURL: 'http://43.201.37.164:3000',
+    baseURL: 'https://ruwity.wishu.site',
     validateStatus: (status) => status >= 200 && status < 400,
   });
 

@@ -19,7 +19,7 @@ export default function Page() {
 
       <div className="mb-2 text-sm">링크는 링크지</div>
       <img src="/logo.png" className="h-[57px] mb-40  max-w-[204px] w-full" />
-      <Link href="http://43.201.37.164:3000/kakao-login/login" className="w-full">
+      <Link href="https://ruwity.wishu.site/kakao-login/login" className="w-full">
         <button className="cursor-pointer w-full rounded-lg bg-[#FEE500] text-black py-3 inline-flex items-center relative justify-center">
           <div className="absolute left-2 top-3">
             <Image
