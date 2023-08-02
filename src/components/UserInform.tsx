@@ -1,9 +1,49 @@
-
+import { useState } from "react";
+import Image from "next/image";
 
 import * as userApi from "src/apis/user";
-import { useState } from "react";
+import DialogContainer from "src/components/DialogContainer";
+import Icons from "src/assets/icons";
+
 
 export default function UserInform({ setPageIndex }: any) {
+  const dsa22: any = {
+    0: <div className="text-black text-base flex flex-col items-center">
+      <Image
+        src={Icons.UnhappyIcon}
+        width={40}
+        height={40}
+        alt="불행 아이콘"
+        className=" mx-auto "
+
+      />
+      <div className="mt-2 my-7">이미 <span className=" text-[#7163E8] font-semibold">사용중인</span> 이메일 이네요..</div>
+      <button
+        onClick={() => {
+          setShowModal(false)
+        }} className=" bg-[#7163E8] text-white py-4 w-full max-w-[180px] rounded-lg">다시 적으러가기</button>
+    </div>, 1: <div className="text-black text-base flex flex-col">
+      <Image
+        src={Icons.HappyIcon}
+        width={40}
+        height={40}
+        alt="행복 아이콘"
+        className=" mx-auto mb-2"
+      />
+      <div className="mt-2 my-7">
+        <span className=" text-[#7163E8] font-semibold">사용 가능 한</span> 이메일 이예요!<span></span>
+      </div>
+      <button
+        onClick={() => {
+          setShowModal(false)
+        }}
+        className=" bg-[#7163E8] text-white py-4 w-full max-w-[180px] rounded-lg">사용하기</button>
+    </div>
+  }
+
+  const [showModal, setShowModal] = useState(false);
+  const [alertIndex, setAlertIndex] = useState<any>();
+
   const [inputs, setInputs] = useState({
     url: "",
     gender: null,
@@ -46,10 +86,14 @@ export default function UserInform({ setPageIndex }: any) {
       const res = (await userApi.fetchURLDuplication(url)) as any;
       if (res) {
         alert("사용가능합니다.");
+        setShowModal(true)
         setIsDuplication(res);
+        setAlertIndex(1)
       }
     } catch (error: any) {
-      alert(error.response.data.message);
+
+      setShowModal(true)
+      setAlertIndex(0)
     }
   };
 
@@ -153,6 +197,7 @@ export default function UserInform({ setPageIndex }: any) {
       >
         다음
       </button>
+      <DialogContainer showModal={showModal} setShowModal={setShowModal}>{dsa22[alertIndex]}</DialogContainer>
     </div>
   );
 }
