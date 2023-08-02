@@ -3,6 +3,6 @@
 export default function Test({ searchParams }: any) {
   console.log(searchParams)
   return (
-    <>dsa</>
+    <div>dsadsa</div>
   );
 }
