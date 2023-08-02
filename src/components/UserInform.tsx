@@ -1,6 +1,6 @@
 
 
-import * as userApi from "src/pages/apis/user";
+import * as userApi from "src/apis/user";
 import { useState } from "react";
 
 export default function UserInform({ setPageIndex }: any) {

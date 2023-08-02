@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import * as userApi from "src/pages/apis/user";
+import * as userApi from "src/apis/user";
 
 export default function Complete() {
   const router = useRouter();

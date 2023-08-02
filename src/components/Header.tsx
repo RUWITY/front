@@ -6,7 +6,7 @@ import Image from "next/legacy/image";
 import { useRecoilState } from "recoil";
 
 import { userProfileState, imgFileState, tabListState } from "src/store";
-import * as userApi from "src/pages/apis/user";
+import * as userApi from "src/apis/user";
 import Icons from "src/assets/icons";
 import ShareButton from "src/components/ShareButton";
 import useLocalStorage from "src/hooks/useLocalStorage";

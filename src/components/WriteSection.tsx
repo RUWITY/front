@@ -9,8 +9,8 @@ import { redirect } from "next/navigation";
 import useLocalStorage from "src/hooks/useLocalStorage";
 import Icons from "src/assets/icons";
 import Modal from "src/components/Modal";
-import * as userApi from "src/pages/apis/user";
-import * as tabApi from "src/pages/apis/tab";
+import * as userApi from "src/apis/user";
+import * as tabApi from "src/apis/tab";
 import { userProfileState, imgFileState, tabListState } from "src/store";
 
 export default function WriteSection() {

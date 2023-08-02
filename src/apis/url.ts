@@ -1,4 +1,4 @@
-import customAxios from 'src/pages/apis';
+import customAxios from 'src/apis';
 
 export async function fetchUrlHistory() {
   const res = await customAxios.get('/user-url/all');

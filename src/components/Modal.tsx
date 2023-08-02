@@ -2,7 +2,7 @@
 
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { createTabText, createTabLink } from "src/pages/apis/tab";
+import { createTabText, createTabLink } from "src/apis/tab";
 
 interface MyModalProps {
   showModal: any;

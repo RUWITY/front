@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-import * as urlApi from "src/pages/apis/url";
-import * as userApi from "src/pages/apis/user";
+import * as urlApi from "src/apis/url";
+import * as userApi from "src/apis/user";
 
 export default function Page() {
   const [urlList, setUrlList] = useState<any>();

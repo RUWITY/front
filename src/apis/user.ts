@@ -1,4 +1,4 @@
-import customAxios from 'src/pages/apis';
+import customAxios from 'src/apis';
 
 export async function fetchUserType() {
   const res = await customAxios.get('/user-user/user_type');

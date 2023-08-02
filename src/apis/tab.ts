@@ -1,4 +1,4 @@
-import customAxios from 'src/pages/apis';
+import customAxios from 'src/apis';
 
 export async function createTabText() {
   const res = await customAxios.post('/user-tap/text');

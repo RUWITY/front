@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Image from "next/legacy/image";
 import { useRecoilState } from "recoil";
 
-import * as userApi from "src/pages/apis/user";
+import * as userApi from "src/apis/user";
 import { userProfileState, imgFileState } from "src/store";
 import Icons from "src/assets/icons";
 import Alert from "src/components/Alert";

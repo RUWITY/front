@@ -7,7 +7,7 @@ import Terms from "src/components/Terms";
 import TermsDetail from "src/components/TermsDetail";
 import UserInform from "src/components/UserInform";
 import Complete from "src/components/Complete";
-import * as userApi from "src/pages/apis/user";
+import * as userApi from "src/apis/user";
 
 export default function SignInPage() {
   const [isNew, setIsNew] = useState();
