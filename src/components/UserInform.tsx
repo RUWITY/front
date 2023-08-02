@@ -120,7 +120,7 @@ export default function UserInform({ setPageIndex }: any) {
         </div>
         <div className="flex justify-between">
           <div className="mb-0 overflow-auto flex flex-1 items-center bg-neutral-50 pl-4 rounded-[0.4rem] mr-[14px] max-w-[240px] w-full">
-            <div className="relative top-0 bottom-0">wity.im/</div>
+            <div className="relative top-0 bottom-0">linkg.im/</div>
             <div className="relative flex items-center overflow-hidden w-full">
               <input
                 className="py-2 px-4 rounded-lg focus:border-primary focus:border data-[state=invalid]:focus:border-solid data-[state=invalid]:focus:border-red-500 data-[state=invalid]:focus:border pl-0 bg-transparent min-width-0 w-full outline-none border-none focus:border-none hover:border-none hover:outline-none"

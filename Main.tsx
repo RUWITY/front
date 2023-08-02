@@ -9,7 +9,7 @@ const Main = () => {
           <div className="flex items-center w-full">
             로고
             <div className="flex  cursor-pointer ml-3 flex-1 max-w-[70%]">
-              <p className="underline">wity.im/</p>
+              <p className="underline">linkg.im/</p>
               <p className="underline overflow-hidden text-ellipsis">222</p>
             </div>
           </div>
