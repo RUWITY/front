@@ -5,11 +5,16 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { isServer } from "utils/env";
 
+
 import * as urlApi from "apis/url";
 
 export default function Page({ params }: { params: { id: string } }) {
   const { id } = params;
   const [user, setUser] = useState<any>()
+
+  const AddUrlView = async (id: any) => {
+    (await urlApi.AddUrlView(id)) as any;
+  };
 
   const loadUserProfile = async () => {
     try {
@@ -46,6 +51,8 @@ export default function Page({ params }: { params: { id: string } }) {
     return <div></div>
   }
 
+  console.log(user)
+
   return (
     <div
       className="w-full min-h-screen h-full flex pt-[60px] absolute z-10  max-w-[390px]"
@@ -61,7 +68,7 @@ export default function Page({ params }: { params: { id: string } }) {
           <div className="text-xs mb-1.5 text-white">
             <span className=" font-semibold ">{user.user_nickname}</span>님의 <span>{formatDate(user.created_at)}</span>의 관심 링크
           </div>
-          <Link href={user.today_link}>
+          <Link href={user.today_link} onClick={() => { AddUrlView(67) }}>
             <div className=" underline mb-9 text-white text-sm">{user.today_link}</div>
           </Link>
           <div className=" text-white text-sm font-semibold mb-5">요즘 듣고있는 노래!</div>

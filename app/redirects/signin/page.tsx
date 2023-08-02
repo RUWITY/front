@@ -1,26 +1,9 @@
-"use client";
-
-import { useEffect } from "react";
-import { redirect } from "next/navigation";
-
-import useLocalStorage from "hooks/useLocalStorage";
+import Redirect from "components/Redirect";
 
 export default function Page({ searchParams }: any) {
   const { access_token, refresh_token } = searchParams;
 
-  const [accessToken, setAccessToken] = useLocalStorage<string | null>("access_token", null);
-  const [refreshToken, setRefreshToken] = useLocalStorage<string | null>("refresh_token", null);
 
-  useEffect(() => {
-    setAccessToken(access_token.replace(/'/g, ""));
-    setRefreshToken(refresh_token.replace(/'/g, ""));
-  }, []);
 
-  useEffect(() => {
-    if (accessToken) {
-      return redirect("/userinfo");
-    }
-  }, [accessToken, refreshToken]);
-
-  return <div className="w-full min-h-screen h-full flex bg-white">2</div>;
+  return <Redirect access_token={access_token} refresh_token={refresh_token} />
 }
