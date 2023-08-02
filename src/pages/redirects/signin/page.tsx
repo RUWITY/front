@@ -1,9 +1,9 @@
 import Redirect from "src/components/Redirect";
 import Test from "src/components/Test";
 
-export default async function Page(props: any) {
+export default function SignInPage() {
+  const props = 1
 
-  console.log(props)
   return <Test searchParams={props} />
 }
 

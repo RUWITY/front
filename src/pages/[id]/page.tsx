@@ -88,7 +88,7 @@
 
 import SignIn from "src/components/SignIn";
 
-export default async function SignInPage() {
+export default function SignInPage() {
 
   return (
     <div className="w-full min-h-screen h-full flex bg-white" style={{ backgroundColor: "#ffffff" }}>

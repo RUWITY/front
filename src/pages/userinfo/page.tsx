@@ -9,7 +9,7 @@ import UserInform from "src/components/UserInform";
 import Complete from "src/components/Complete";
 import * as userApi from "src/pages/apis/user";
 
-export default function Page() {
+export default function SignInPage() {
   const [isNew, setIsNew] = useState();
 
   const loadUserType = async () => {
