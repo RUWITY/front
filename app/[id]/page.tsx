@@ -88,8 +88,7 @@
 
 import SignIn from "components/SignIn";
 
-export default async function SignInPage({ params }: { params: { id: string } }) {
-  console.log(params)
+export default async function SignInPage() {
 
   return (
     <div className="w-full min-h-screen h-full flex bg-white" style={{ backgroundColor: "#ffffff" }}>
