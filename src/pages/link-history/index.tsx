@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-
 import * as urlApi from "src/apis/url";
 import * as userApi from "src/apis/user";
 
@@ -19,12 +18,9 @@ export default function Page() {
     setUrlList(res);
   };
 
-
-
   if (!urlList) {
     return <></>;
   }
-
 
   return (
     <div className="w-full min-h-screen h-full flex bg-[#FAFAFA] px-4">

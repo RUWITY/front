@@ -4,16 +4,18 @@ import App from 'next/app';
 import Head from 'next/head'
 import Router, { useRouter } from "next/router";
 import NProgress from "nprogress";
+import Script from "next/script";
 
+import { isProduction } from "src/utils/env";
 import Header from "src/components/Header";
 import BottomNav from "src/components/BottomNav";
 import { useGoogleAnalytics as GoogleAnalytics } from 'src/hooks/useGoogleAnalytics'
 import DefaultLayout from 'src/layouts/DefaultLayout'
 
-import "nprogress/nprogress.css";
 import '../styles/globals.css'
 import '../styles/reset.css'
 import '../styles/override.css'
+import "nprogress/nprogress.css";
 
 MyApp.getInitialProps = async (appContext: any) => {
   const { ctx } = appContext;
@@ -52,6 +54,28 @@ export default function MyApp({ Component, pageProps, access_token }: any) {
 
   return (
     <>
+      {isProduction() ? (
+        <>
+          <Script
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
+          />
+          <Script
+            id="gtag-init"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+            }}
+          />
+        </>
+      ) : null}
       <Head>
         <title>링크지</title>
         <meta
