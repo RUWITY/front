@@ -27,6 +27,7 @@ export default function Page() {
     return <></>;
   }
 
+
   return (
     <div className="w-full min-h-screen h-full flex bg-[#FAFAFA] px-4">
       <div className="mt-[60px] text-[10px] w-full">
