@@ -1,5 +1,3 @@
-
-
 export default function TermsDetail() {
   return (
     <div className=" mx-auto inline-flex justify-center items-center px-8">

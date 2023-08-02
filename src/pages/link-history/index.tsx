@@ -1,7 +1,7 @@
 
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+
 
 import * as urlApi from "src/apis/url";
 import * as userApi from "src/apis/user";
@@ -19,9 +19,7 @@ export default function Page() {
     setUrlList(res);
   };
 
-  const AddUrlView = async (id: any) => {
-    (await urlApi.AddUrlView(id)) as any;
-  };
+
 
   if (!urlList) {
     return <></>;
@@ -58,10 +56,6 @@ export default function Page() {
               </div>
               <div
                 className="mt-1 text-[#737373]"
-                onClick={async () => {
-                  await AddUrlView(item.id);
-                  await loadUrlHistory();
-                }}
               >
                 {item.url}
               </div>

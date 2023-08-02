@@ -1,5 +1,27 @@
 import WriteSection from "src/components/WriteSection";
 
+export async function getServerSideProps(context: any) {
+  const { req } = context
+  const cookies = req.headers.cookie || '';
+  const cookieArray = cookies.split(';');
+  let myCookieValue = null;
+
+  for (let i = 0; i < cookieArray.length; i++) {
+    const cookie = cookieArray[i].trim();
+    if (cookie.startsWith('access_token=')) {
+      myCookieValue = cookie.substring('access_token='.length, cookie.length);
+      break;
+    }
+  }
+
+  if (!myCookieValue) {
+    context.res.writeHead(303, { Location: '/' })
+    context.res.end()
+  }
+
+  return { props: {} }
+}
+
 export default function SignInPage() {
   return (
     <div className="w-full min-h-screen h-full flex pt-[60px]">

@@ -1,19 +1,12 @@
 
 
 import Link from "next/link";
-import { useRouter } from "next/router";
+
 import Image from "next/legacy/image";
 
 import Icons from "src/assets/icons";
-import useLocalStorage from "src/hooks/useLocalStorage";
 
 export default function Page() {
-  const router = useRouter()
-  const [accessToken] = useLocalStorage("access_token", null);
-
-  if (accessToken) {
-    return router.push("/page");
-  }
 
   return (
     <div className=" mx-auto inline-flex justify-center items-center flex-col w-full">

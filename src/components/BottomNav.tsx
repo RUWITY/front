@@ -9,17 +9,13 @@ import * as userApi from "src/apis/user";
 import { userProfileState, imgFileState } from "src/store";
 import Icons from "src/assets/icons";
 import Alert from "src/components/Alert";
-import useLocalStorage from "src/hooks/useLocalStorage";
 
-export default function BottomNav() {
+
+export default function BottomNav({ accessToken }: any) {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const [inputs, setInputs] = useRecoilState(userProfileState);
   const [imgFile, setImgFile] = useRecoilState(imgFileState);
-  const [accessToken, setAccessToken] = useLocalStorage<string | null>(
-    "access_token",
-    null
-  );
   const pathname = usePathname();
 
   if (!accessToken) {

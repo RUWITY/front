@@ -25,7 +25,7 @@ export default function UserInform({ setPageIndex }: any) {
     const inputValue = type === "checkbox" ? checked : value;
     if (name === 'url') {
 
-      console.log(inputs.url, validateInput(value))
+
       if (!validateInput(value)) {
         return
       }
@@ -55,7 +55,7 @@ export default function UserInform({ setPageIndex }: any) {
 
   const dsa = async () => {
     const res = await userApi.fetchReport({ url, gender, age }) as any;
-    console.log(res)
+
     if (res) {
       setPageIndex((prev: number) => prev + 1);
     }

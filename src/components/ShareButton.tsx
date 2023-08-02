@@ -1,14 +1,12 @@
-
-
 import Image from "next/legacy/image";
-import { usePathname } from "next/navigation";
 
 import Icons from "src/assets/icons";
-export default function ShareButton({ }: any) {
-  const pathname = usePathname();
+
+export default function ShareButton({ pageUrl }: any) {
+
 
   const copyURL = async () => {
-    await navigator.clipboard.writeText("https://linkg.netlify.app" + pathname);
+    await navigator.clipboard.writeText("https://linkg.netlify.app/" + pageUrl);
 
     alert("클립보드에 링크가 복사되었어요.");
   };

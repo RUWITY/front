@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/legacy/image";
@@ -9,15 +7,12 @@ import { userProfileState, imgFileState, tabListState } from "src/store";
 import * as userApi from "src/apis/user";
 import Icons from "src/assets/icons";
 import ShareButton from "src/components/ShareButton";
-import useLocalStorage from "src/hooks/useLocalStorage";
 
-export default function Header() {
+
+export default function Header({ accessToken }: any) {
   const router = useRouter();
   const pathname = usePathname() as any
-  const [accessToken, setAccessToken] = useLocalStorage<string | null>(
-    "access_token",
-    null
-  );
+
   const [inputs, setInputs] = useRecoilState(userProfileState);
   const [imgFile, setImgFile] = useRecoilState(imgFileState);
   const [tabList, setTabList] = useRecoilState(tabListState);
@@ -58,7 +53,7 @@ export default function Header() {
     }
   };
 
-  if (!accessToken) {
+  if (!accessToken || !profile) {
     return <></>
   }
 
@@ -112,7 +107,7 @@ export default function Header() {
         >
           확인하기
         </button>
-        <ShareButton />
+        <ShareButton pageUrl={profile?.page_url} />
       </div>
     </header>
   );

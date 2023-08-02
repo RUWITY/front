@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/legacy/image";
 import { useRecoilState, } from "recoil";
 import { useRouter } from "next/router";
-import useLocalStorage from "src/hooks/useLocalStorage";
+
 import Icons from "src/assets/icons";
 import Modal from "src/components/Modal";
 import * as userApi from "src/apis/user";
@@ -17,12 +17,6 @@ export default function WriteSection() {
   const [inputs, setInputs] = useRecoilState(userProfileState);
   const [imgFile, setImgFile] = useRecoilState(imgFileState);
 
-  const [accessToken, setAccessToken] = useLocalStorage<string | null>(
-    "access_token",
-    null
-  );
-
-
   const [showModal, setShowModal] = useState(false);
   const [tabList, setTabList] = useRecoilState<any>(tabListState);
 
@@ -32,11 +26,7 @@ export default function WriteSection() {
     setTabList(res)
   }
 
-  useEffect(() => {
-    if (!accessToken) {
-      router.push("/");
-    }
-  }, [accessToken]);
+
 
   const loadProfile = async () => {
     const res = (await userApi.fetchProfile()) as any;
@@ -85,7 +75,7 @@ export default function WriteSection() {
     }
     inputRef.current.click();
   };
-  console.log(inputs)
+
   return (
     <section className="mx-auto h-full ">
       <div className="flex flex-col mb-4 rounded-lg  min-h-[3rem] justify-center">

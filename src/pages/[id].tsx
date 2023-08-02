@@ -1,12 +1,21 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/router";
 
-import { isServer } from "src/utils/env";
 import * as urlApi from "src/apis/url";
 
-export default function Page({ params }: { params: { id: string } }) {
-  const { id } = params;
+export async function getServerSideProps(context: any) {
+  const { params } = context;
+
+  return {
+    props: {
+      id: params.id
+    },
+  };
+}
+
+export default function Page({ id }: any) {
+  const router = useRouter()
   const [user, setUser] = useState<any>()
 
   const AddUrlView = async (id: any) => {
@@ -20,10 +29,7 @@ export default function Page({ params }: { params: { id: string } }) {
         setUser(res)
       }
     } catch (error: any) {
-      if (!isServer) {
-        redirect('/')
-      }
-
+      router.push('/')
     }
   }
 
@@ -35,20 +41,15 @@ export default function Page({ params }: { params: { id: string } }) {
     const date = new Date(dateString);
     const month = date.getMonth() + 1;
     const day = date.getDate();
-
-
     const formattedMonth = String(month).padStart(2, '0');
     const formattedDay = String(day).padStart(2, '0');
 
     return `${formattedMonth}월 ${formattedDay}일`;
   }
 
-
   if (!user) {
     return <div></div>
   }
-
-  console.log(user)
 
   return (
     <div

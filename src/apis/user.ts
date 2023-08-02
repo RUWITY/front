@@ -11,7 +11,6 @@ export async function fetchURLDuplication(url: any) {
 }
 
 export async function fetchReport({ url, gender, age }: any) {
-  console.log(url, gender, Number(age));
   const res = await customAxios.post(`/user-user/report`, {
     page_url: String(url),
     gender: String(gender),

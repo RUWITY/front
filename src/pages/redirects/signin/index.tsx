@@ -1,30 +1,20 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+export async function getServerSideProps(context: any) {
+  const { query } = context
 
-import useLocalStorage from "src/hooks/useLocalStorage";
-
-export async function getServerSideProps({ query }: any) {
   const { access_token, refresh_token } = query
+
+  const maxAgeInSeconds = 48 * 60 * 60;
+
+  context.res.setHeader("set-cookie", `access_token=${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjkwOTgzMTQ0LCJleHAiOjE2OTEwMjYzNDR9.vONdUGVNzZXIGK4m725Z-T8uJudyDHWSCQymedvQk6A"}; max-age=${maxAgeInSeconds}; path=/; samesite=lax; httponly;`)
+
+  context.res.writeHead(303, { Location: '/' })
+  context.res.end()
 
   return { props: { access_token, refresh_token } }
 }
 
-export default function SignInPage({ access_token, refresh_token }: any) {
-  const router = useRouter();
-
-  const [accessToken, setAccessToken] = useLocalStorage<string | null>("access_token", null);
-  const [refreshToken, setRefreshToken] = useLocalStorage<string | null>("refresh_token", null);
-
-  useEffect(() => {
-    if (accessToken) {
-      router.push('/userinfo')
-    }
-
-    setAccessToken(access_token.replace(/'/g, ""))
-    setRefreshToken(refresh_token.replace(/'/g, ""))
-  }, [accessToken, refresh_token]);
-
-  return <div className="w-full min-h-screen h-full flex bg-white"> 2</div >
+export default function SignInPage() {
+  return <></>
 }
 
 
