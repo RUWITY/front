@@ -1,20 +1,20 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "baseUrl": ".",
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": ".",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "incremental": true,
     "esModuleInterop": true,
     "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
+    "incremental": true,
     "plugins": [
       {
         "name": "next"
