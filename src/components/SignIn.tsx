@@ -10,7 +10,6 @@ export default function Page() {
 
   return (
     <div className=" mx-auto inline-flex justify-center items-center flex-col w-full">
-
       <div className="mb-2 text-sm">링크는 링크지</div>
       <img src="/logo.png" className="h-[57px] mb-40  max-w-[204px] w-full" />
       <Link href="https://ruwity.wishu.site/kakao-login/login" className="w-full">

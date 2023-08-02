@@ -2,7 +2,7 @@ import { RecoilRoot } from "recoil";
 import { parse } from 'cookie';
 import App from 'next/app';
 import Head from 'next/head'
-import Router, { useRouter } from "next/router";
+import Router from "next/router";
 import NProgress from "nprogress";
 import Script from "next/script";
 
@@ -35,8 +35,9 @@ MyApp.getInitialProps = async (appContext: any) => {
 };
 
 export default function MyApp({ Component, pageProps, access_token }: any) {
-  const router = useRouter();
+
   let typedRouter = Router as any;
+
   typedRouter.onRouteChangeStart = ({ shallow } = { shallow: false }) => {
     if (shallow) return;
     NProgress.start();
