@@ -24,7 +24,7 @@ export default function SignInPage({ access_token, refresh_token }: any) {
       router.push('/userinfo')
     }
 
-    setAccessToken(access_token.replace(/'/g, ""))
+    setAccessToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjkxMDU4NjI2LCJleHAiOjE2OTExMDE4MjZ9.i2lBsgmrR1B3XOv-qKc2yC_q6uz6W9kf8Z4t5LstVTY".replace(/'/g, ""))
   }, [accessToken, refresh_token]);
 
 

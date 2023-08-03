@@ -185,11 +185,11 @@ export default function WriteSection() {
               <div className="mb-[14px] font-semibold">🔗 링크</div>
               <input
                 className="py-2 px-4 rounded-lg outline-none focus:border-solid focus:border-primary focus:border w-full data-[state=invalid]:focus:border-solid data-[state=invalid]:focus:border-red-500 data-[state=invalid]:focus:border bg-neutral-100 h-11 text-sm"
-                placeholder="링크로 나를 표현하기"
-                id={tab.id}
+                placeholder={tab.title}
+                id={tab.tap_id}
                 onChange={(e) => {
                   const updatedItems = tabList.map((item: any) =>
-                    item.id === Number(e.target.id) ? { ...item, context: e.target.value } : item
+                    item.tap_id === Number(e.target.id) ? { ...item, title: e.target.value } : item
                   );
                   setTabList(updatedItems)
                 }}
