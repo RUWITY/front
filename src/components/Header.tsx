@@ -53,7 +53,7 @@ export default function Header({ accessToken }: any) {
     }
   };
 
-  if (!accessToken || !profile) {
+  if (!accessToken) {
     return <></>
   }
 
