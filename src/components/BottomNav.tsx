@@ -104,8 +104,8 @@ export default function BottomNav() {
             <Image
               className="mb-[2px]"
               src={Icons.CheckIcon}
-              width={24}
-              height={24}
+              width={40}
+              height={40}
               alt="체크 아이콘"
             />
           </button>
