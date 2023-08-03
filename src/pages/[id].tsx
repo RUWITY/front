@@ -50,7 +50,7 @@ export default function Page({ id }: any) {
   if (!user) {
     return <div></div>
   }
-
+  console.log(user)
   return (
     <div
       className="w-full min-h-screen h-full flex pt-[60px] absolute z-10  max-w-[390px]"

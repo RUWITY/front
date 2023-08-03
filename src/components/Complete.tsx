@@ -26,7 +26,7 @@ export default function Complete() {
         링크지 가입을 환영해요!
       </div>
       <div className=" text-xs">이제 나만의 프로필을 꾸미러 가볼까요?</div>
-      <Image src="/rectangle.png" className="w-[272px] h-[272px] mx-auto" alt={'1'} />
+      <Image src="/rectangle.png" className="w-[272px] h-[272px] mx-auto" alt={'1'} width={272} height={272} />
       <button
         className="bg-[#6F63E0] w-full py-[14px] rounded-lg text-white mt-11"
         onClick={() => {

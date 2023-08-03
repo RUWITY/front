@@ -22,7 +22,7 @@ export default function UserInform({ setPageIndex }: any) {
         onClick={() => {
           setShowModal(false)
         }} className=" bg-[#7163E8] text-white py-4 w-full max-w-[180px] rounded-lg">다시 적으러가기</button>
-    </div>, 1: <div className="text-black text-base flex flex-col">
+    </div>, 1: <div className="text-black text-base flex flex-col items-center">
       <Image
         src={Icons.HappyIcon}
         width={40}
@@ -85,13 +85,11 @@ export default function UserInform({ setPageIndex }: any) {
     try {
       const res = (await userApi.fetchURLDuplication(url)) as any;
       if (res) {
-        alert("사용가능합니다.");
         setShowModal(true)
         setIsDuplication(res);
         setAlertIndex(1)
       }
     } catch (error: any) {
-
       setShowModal(true)
       setAlertIndex(0)
     }

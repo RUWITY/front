@@ -3,12 +3,18 @@ import { usePathname, useRouter } from "next/navigation";
 import Image from "next/legacy/image";
 import { useRecoilValue } from "recoil";
 
+import useLocalStorage from 'src/hooks/useLocalStorage'
 import { userProfileState, imgFileState, tabListState } from "src/store";
+import { isValidURL } from "src/utils/url";
 import * as userApi from "src/apis/user";
 import Icons from "src/assets/icons";
 import ShareButton from "src/components/ShareButton";
 
-export default function Header({ accessToken }: any) {
+export default function Header() {
+  const [accessToken, setAccessToken] = useLocalStorage<string | null>(
+    "access_token",
+    null
+  );
   const router = useRouter();
   const pathname = usePathname() as any
 
@@ -33,6 +39,11 @@ export default function Header({ accessToken }: any) {
   const actions = tabList as any
 
   const saveProfile = async () => {
+
+    if (!isValidURL(inputs.todayLink)) {
+      return alert("올바른 링크가 아닙니다.");
+    }
+
     const formData = new FormData();
 
     formData.append('profile', imgFile);
@@ -68,6 +79,7 @@ export default function Header({ accessToken }: any) {
             height={24}
             alt="뒤로가기 아이콘"
             onClick={() => router.back()}
+            className=" cursor-pointer"
           />
         </div>
       </header>

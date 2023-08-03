@@ -36,6 +36,7 @@ export default function LinkHistory() {
                   className="text-[#7163E8] text-[10px] cursor-pointer"
                   onClick={async () => {
                     const res = await userApi.changeTodayLink(item.id);
+                    alert('적용되었습니다.')
                   }}
                 >
                   프로필로 적용하기

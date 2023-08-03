@@ -200,7 +200,7 @@ export default function Terms({ setPageIndex }: any) {
           className=" text-base py-[14px] w-full bg-[#6F63E0] rounded-lg text-white font-semibold disabled:bg-[#E5E5E5] disabled:text-black disabled:font-normal"
           disabled={!isNext}
           onClick={() => {
-            setPageIndex(2);
+            setPageIndex(1);
           }}
         >
           회원가입

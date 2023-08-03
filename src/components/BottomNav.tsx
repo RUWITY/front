@@ -5,16 +5,20 @@ import { usePathname, useRouter } from "next/navigation";
 import Image from "next/legacy/image";
 import { useRecoilState } from "recoil";
 
+import useLocalStorage from 'src/hooks/useLocalStorage'
 import * as userApi from "src/apis/user";
 import { userProfileState, imgFileState } from "src/store";
 import Icons from "src/assets/icons";
 import Alert from "src/components/Alert";
 
 
-export default function BottomNav({ accessToken }: any) {
+export default function BottomNav() {
   const router = useRouter();
   const pathname = usePathname();
-
+  const [accessToken, setAccessToken] = useLocalStorage<string | null>(
+    "access_token",
+    null
+  );
   const [showModal, setShowModal] = useState(false);
   const [inputs, setInputs] = useRecoilState(userProfileState);
   const [imgFile, setImgFile] = useRecoilState(imgFileState);
@@ -123,7 +127,7 @@ export default function BottomNav({ accessToken }: any) {
         </button>
         <button
           onClick={() => {
-            setShowModal(true);
+            router.push('/setting')
           }}
         >
           <Image
