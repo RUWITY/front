@@ -55,7 +55,7 @@ export default function MyApp({ Component, pageProps, access_token }: any) {
 
   return (
     <>
-      {isProduction() ? (
+      {/* {isProduction() ? (
         <>
           <Script
             strategy="afterInteractive"
@@ -76,7 +76,7 @@ export default function MyApp({ Component, pageProps, access_token }: any) {
             }}
           />
         </>
-      ) : null}
+      ) : null} */}
       <Head>
         <title>링크지</title>
         <meta

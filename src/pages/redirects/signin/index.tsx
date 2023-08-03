@@ -13,7 +13,8 @@ export default function SignInPage({ context }: any) {
   useEffect(() => {
     router.push('/')
   }, [])
-  console.log(context)
+
+
   return <>123</>
 }
 
