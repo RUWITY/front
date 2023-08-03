@@ -166,11 +166,11 @@ export default function UserInform({ setPageIndex }: any) {
           </div>
           <div>
             <input
-              id="none"
-              value="none"
+              id="null"
+              value="null"
               name="gender"
               type="radio"
-              checked={inputs.gender === "none"}
+              checked={inputs.gender === "null"}
               onChange={handleInputChange}
             />
             <span className="ml-1">표현안함</span>
