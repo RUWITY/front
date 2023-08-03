@@ -3,6 +3,7 @@ import Axios, { AxiosResponse } from 'axios';
 export const createApi = (headers: any) => {
   const _customAxios = Axios.create({
     baseURL: 'https://ruwity.wishu.site',
+    withCredentials: true,
     validateStatus: (status) => status >= 200 && status < 400,
   });
 
