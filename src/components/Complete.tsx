@@ -6,14 +6,14 @@ import * as userApi from "src/apis/user";
 
 export default function Complete() {
   const router = useRouter();
-  const [url, setUrl] = useState();
+  const [url, setUrl] = useState<string>();
 
   useEffect(() => {
     loadProfile();
   }, []);
 
   const loadProfile = async () => {
-    const res = (await userApi.fetchProfile()) as any;
+    const res = await userApi.fetchProfile()
 
     setUrl(res.page_url);
   };

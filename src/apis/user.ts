@@ -1,17 +1,17 @@
 import customAxios from 'src/apis';
 
 export async function fetchUserType() {
-  const res = await customAxios.get('/user-user/user_type');
+  const res = await customAxios.get<null, any>('/user-user/user_type');
   return res;
 }
 
 export async function fetchURLDuplication(url: any) {
-  const res = await customAxios.get(`/user-user/check/page/${url}`);
+  const res = await customAxios.get<null, any>(`/user-user/check/page/${url}`);
   return res;
 }
 
 export async function fetchReport({ url, gender, age }: any) {
-  const res = await customAxios.post(`/user-user/report`, {
+  const res = await customAxios.post<null, any>(`/user-user/report`, {
     page_url: String(url),
     gender: String(gender),
     age: Number(age),
@@ -20,7 +20,7 @@ export async function fetchReport({ url, gender, age }: any) {
 }
 
 export async function fetchProfile() {
-  const res = await customAxios.get(`/user-user/profile`);
+  const res = await customAxios.get<null, any>(`/user-user/profile`);
   return res;
 }
 
@@ -35,7 +35,7 @@ export async function SaveProfile(
     'Content-Type': 'multipart/form-data',
   };
 
-  const res = await customAxios.patch(
+  const res = await customAxios.patch<null, any>(
     `/user-user/profile`,
     {
       nickname,
@@ -50,6 +50,8 @@ export async function SaveProfile(
 }
 
 export async function changeTodayLink(id: any) {
-  const res = await customAxios.patch(`/user-user/update/todayLink/${id}`);
+  const res = await customAxios.patch<null, any>(
+    `/user-user/update/todayLink/${id}`,
+  );
   return res;
 }

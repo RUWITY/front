@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
+import type { GetServerSidePropsContext } from 'next'
 import * as urlApi from "src/apis/url";
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { params } = context;
 
   return {
     props: {
-      id: params.id
+      id: params?.id,
     },
   };
 }

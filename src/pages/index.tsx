@@ -1,7 +1,7 @@
-
 import SignIn from "src/components/SignIn";
+import type { GetServerSidePropsContext } from 'next'
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { req } = context
   const cookies = req.headers.cookie || '';
   const cookieArray = cookies.split(';');

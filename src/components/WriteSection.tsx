@@ -26,8 +26,6 @@ export default function WriteSection() {
     setTabList(res)
   }
 
-
-
   const loadProfile = async () => {
     const res = (await userApi.fetchProfile()) as any;
 

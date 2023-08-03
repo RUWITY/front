@@ -1,6 +1,8 @@
+import type { GetServerSidePropsContext } from 'next'
+
 import WriteSection from "src/components/WriteSection";
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { req } = context
   const cookies = req.headers.cookie || '';
   const cookieArray = cookies.split(';');

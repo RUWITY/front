@@ -1,13 +1,12 @@
-
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import type { NextPage } from 'next'
 
 import Terms from "src/components/Terms";
-import TermsDetail from "src/components/TermsDetail";
 import UserInform from "src/components/UserInform";
 import Complete from "src/components/Complete";
 import * as userApi from "src/apis/user";
+
 
 // export async function getServerSideProps(context: any) {
 //   const { req } = context
@@ -31,7 +30,7 @@ import * as userApi from "src/apis/user";
 //   return { props: {} }
 // }
 
-export default function SignInPage() {
+const UserInfo: NextPage = () => {
   const router = useRouter()
   const [isNew, setIsNew] = useState();
 
@@ -55,10 +54,11 @@ export default function SignInPage() {
 
   const pageList = [
     <Terms setPageIndex={setPageIndex} />,
-    <TermsDetail />,
     <UserInform setPageIndex={setPageIndex} />,
     <Complete />,
   ];
 
   return <div className="w-full min-h-screen h-full flex bg-[#FAFAFA]">{pageList[pageIndex]}</div>;
 }
+
+export default UserInfo

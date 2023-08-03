@@ -1,22 +1,20 @@
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/legacy/image";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 
 import { userProfileState, imgFileState, tabListState } from "src/store";
 import * as userApi from "src/apis/user";
 import Icons from "src/assets/icons";
 import ShareButton from "src/components/ShareButton";
 
-
 export default function Header({ accessToken }: any) {
   const router = useRouter();
   const pathname = usePathname() as any
 
-  const [inputs, setInputs] = useRecoilState(userProfileState);
-  const [imgFile, setImgFile] = useRecoilState(imgFileState);
-  const [tabList, setTabList] = useRecoilState(tabListState);
-
+  const inputs = useRecoilValue(userProfileState);
+  const imgFile = useRecoilValue(imgFileState);
+  const tabList = useRecoilValue(tabListState);
 
   const [profile, setProfile] = useState<any>();
 
@@ -53,11 +51,7 @@ export default function Header({ accessToken }: any) {
     }
   };
 
-  if (!accessToken) {
-    return <></>
-  }
-
-  if (["/", "/userinfo", "/link-history"].includes(pathname)) {
+  if (["/", "/userinfo", "/link-history"].includes(pathname) || !accessToken) {
     return (
       <header
         className="fixed top-0 z-10 max-w-inherit w-full px-4 py-3 flex items-center justify-between h-15 bg-[#FAFAFA] max-w-[390px]"

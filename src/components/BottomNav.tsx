@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/legacy/image";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 
 import * as userApi from "src/apis/user";
 import { userProfileState, imgFileState } from "src/store";
@@ -13,14 +13,16 @@ import Alert from "src/components/Alert";
 
 export default function BottomNav({ accessToken }: any) {
   const router = useRouter();
-  const [showModal, setShowModal] = useState(false);
-  const [inputs, setInputs] = useRecoilState(userProfileState);
-  const [imgFile, setImgFile] = useRecoilState(imgFileState);
   const pathname = usePathname();
+
+  const [showModal, setShowModal] = useState(false);
+  const [inputs] = useRecoilValue(userProfileState);
+  const [imgFile] = useRecoilValue(imgFileState);
 
   if (!accessToken) {
     return <></>
   }
+
   if (["/", "/userinfo", "/link-history"].includes(pathname)) {
     return <></>;
   }

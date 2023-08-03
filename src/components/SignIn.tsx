@@ -1,13 +1,11 @@
 
 
 import Link from "next/link";
-
 import Image from "next/legacy/image";
 
 import Icons from "src/assets/icons";
 
 export default function Page() {
-
   return (
     <div className=" mx-auto inline-flex justify-center items-center flex-col w-full">
       <div className="mb-2 text-sm">링크는 링크지</div>

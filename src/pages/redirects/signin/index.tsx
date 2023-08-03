@@ -1,4 +1,6 @@
-export async function getServerSideProps(context: any) {
+import type { GetServerSidePropsContext } from 'next'
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { query } = context
 
   const { access_token, refresh_token } = query

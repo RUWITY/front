@@ -1,11 +1,9 @@
-
-
 import { useEffect, useState } from "react";
 
 import * as urlApi from "src/apis/url";
 import * as userApi from "src/apis/user";
 
-export default function Page() {
+export default function LinkHistory() {
   const [urlList, setUrlList] = useState<any>();
 
   useEffect(() => {
@@ -13,7 +11,7 @@ export default function Page() {
   }, []);
 
   const loadUrlHistory = async () => {
-    const res = (await urlApi.fetchUrlHistory()) as any;
+    const res = await urlApi.fetchUrlHistory()
 
     setUrlList(res);
   };

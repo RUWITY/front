@@ -7,7 +7,7 @@ import Icons from "src/assets/icons";
 
 
 export default function UserInform({ setPageIndex }: any) {
-  const dsa22: any = {
+  const contents: Record<number, JSX.Element> = {
     0: <div className="text-black text-base flex flex-col items-center">
       <Image
         src={Icons.UnhappyIcon}
@@ -197,7 +197,7 @@ export default function UserInform({ setPageIndex }: any) {
       >
         다음
       </button>
-      <DialogContainer showModal={showModal} setShowModal={setShowModal}>{dsa22[alertIndex]}</DialogContainer>
+      <DialogContainer showModal={showModal} setShowModal={setShowModal}>{contents[alertIndex]}</DialogContainer>
     </div>
   );
 }

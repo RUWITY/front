@@ -3,8 +3,6 @@ import Image from "next/legacy/image";
 import Icons from "src/assets/icons";
 
 export default function ShareButton({ pageUrl }: any) {
-
-
   const copyURL = async () => {
     await navigator.clipboard.writeText("https://linkg.netlify.app/" + pageUrl);
 
