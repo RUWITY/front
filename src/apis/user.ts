@@ -24,6 +24,11 @@ export async function fetchProfile() {
   return res;
 }
 
+export async function resign() {
+  const res = await customAxios.post<null, any>(`/user-user/resign`);
+  return res;
+}
+
 export async function SaveProfile(
   nickname: any,
   explanation: any,
