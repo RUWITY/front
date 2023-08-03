@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/legacy/image";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 
 import * as userApi from "src/apis/user";
 import { userProfileState, imgFileState } from "src/store";
@@ -16,8 +16,8 @@ export default function BottomNav({ accessToken }: any) {
   const pathname = usePathname();
 
   const [showModal, setShowModal] = useState(false);
-  const [inputs] = useRecoilValue(userProfileState);
-  const [imgFile] = useRecoilValue(imgFileState);
+  const [inputs, setInputs] = useRecoilState(userProfileState);
+  const [imgFile, setImgFile] = useRecoilState(imgFileState);
 
   if (!accessToken) {
     return <></>

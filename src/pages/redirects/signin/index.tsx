@@ -8,7 +8,7 @@ export default function SignInPage() {
     router.push('/')
   }, [])
 
-  return <></>
+  return <>123</>
 }
 
 
