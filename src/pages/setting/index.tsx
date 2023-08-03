@@ -5,6 +5,7 @@ import type { NextPage } from 'next'
 import * as userApi from "src/apis/user";
 import useLocalStorage from 'src/hooks/useLocalStorage'
 import DialogContainer from 'src/components/DialogContainer'
+import Loading from 'src/components/Loading'
 
 const UserInfo: NextPage = () => {
   const contents: Record<number, JSX.Element> = {
@@ -77,7 +78,7 @@ const UserInfo: NextPage = () => {
   }, [accessToken]);
 
   if (!profile) {
-    return <></>
+    return <Loading />
   }
 
   return <div className="w-full min-h-screen h-full flex bg-[#FAFAFA] mt-[60px]">

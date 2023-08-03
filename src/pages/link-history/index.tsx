@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import * as urlApi from "src/apis/url";
 import * as userApi from "src/apis/user";
+import Loading from "src/components/Loading";
 
 export default function LinkHistory() {
   const [urlList, setUrlList] = useState<any>();
@@ -17,7 +18,7 @@ export default function LinkHistory() {
   };
 
   if (!urlList) {
-    return <></>;
+    return <Loading />
   }
 
   return (

@@ -1,6 +1,4 @@
 import { RecoilRoot } from "recoil";
-import { parse } from 'cookie';
-import App from 'next/app';
 import Head from 'next/head'
 import Router from "next/router";
 import NProgress from "nprogress";
@@ -17,22 +15,7 @@ import '../styles/reset.css'
 import '../styles/override.css'
 import "nprogress/nprogress.css";
 
-MyApp.getInitialProps = async (appContext: any) => {
-  const { ctx } = appContext;
 
-
-  const cookies = ctx.req?.headers.cookie || '';
-  const cookieObj = parse(cookies);
-
-  const access_token = cookieObj.access_token || null;
-
-  let pageProps = {};
-  if (App.getInitialProps) {
-    pageProps = await App.getInitialProps(appContext);
-  }
-
-  return { pageProps, access_token };
-};
 
 export default function MyApp({ Component, pageProps, access_token }: any) {
 
@@ -55,7 +38,7 @@ export default function MyApp({ Component, pageProps, access_token }: any) {
 
   return (
     <>
-      {/* {isProduction() ? (
+      {isProduction() ? (
         <>
           <Script
             strategy="afterInteractive"
@@ -76,7 +59,7 @@ export default function MyApp({ Component, pageProps, access_token }: any) {
             }}
           />
         </>
-      ) : null} */}
+      ) : null}
       <Head>
         <title>링크지</title>
         <meta
@@ -96,12 +79,12 @@ export default function MyApp({ Component, pageProps, access_token }: any) {
         <link rel="shortcut icon" href="/logo-desktop.svg" />
       </Head>
       <RecoilRoot>
-        <Header accessToken={access_token} />
+        <Header />
         <GoogleAnalytics />
         <DefaultLayout>
           <Component {...pageProps} />
         </DefaultLayout>
-        <BottomNav accessToken={access_token} />
+        <BottomNav />
       </RecoilRoot>
     </>
   )
