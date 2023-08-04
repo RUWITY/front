@@ -6,6 +6,7 @@ import * as userApi from "src/apis/user";
 import useLocalStorage from 'src/hooks/useLocalStorage'
 import DialogContainer from 'src/components/DialogContainer'
 import Loading from 'src/components/Loading'
+import { AA } from "src/constants/terms";
 
 const UserInfo: NextPage = () => {
   const contents: Record<number, JSX.Element> = {
@@ -52,6 +53,12 @@ const UserInfo: NextPage = () => {
           className=" bg-[#7163E8] text-white py-3 w-full max-w-[180px] rounded-lg font-semibold" >
           로그아웃
         </button>
+      </div>
+    </div >,
+    2: <div className="max-h-[500px] overflow-y-scroll">
+      <div className="my-2 font-semibold text-[#7163E8] text-center">개인정보 처리방침</div>
+      <div className="text-center  text-xs text-[#737373] mb-4 ">
+        {AA}
       </div>
     </div >
   }
@@ -106,7 +113,12 @@ const UserInfo: NextPage = () => {
       <div className="text-[#a9a9a9] text-xs mb-7">
         About for LINKG
       </div>
-      <div className="text-sm text-black ml-4">개인정보 처리방침</div>
+      <div className="text-sm text-black ml-4"
+        onClick={() => {
+          setShowModal(true)
+          setAlertIndex(2)
+        }}
+      >개인정보 처리방침</div>
     </div>
     <DialogContainer showModal={showModal} setShowModal={setShowModal}>
       {contents[alertIndex]}
