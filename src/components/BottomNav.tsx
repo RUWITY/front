@@ -34,8 +34,11 @@ export default function BottomNav() {
   const actions = tabList as any
   const saveProfile = async () => {
 
-    if (!isValidURL(inputs.todayLink) || tabList.filter((item2: any) => item2.column === 'link').every((item: any) => !isValidURL(item.title))) {
-      return alert("올바른 링크가 아닙니다.");
+    if (!isValidURL(inputs.todayLink)) {
+      return alert("오늘의 링크가 올바른 주소가 아닙니다.");
+    }
+    if (!tabList.filter((item2: any) => item2.column === 'link').every((item: any) => isValidURL(item.title))) {
+      return alert("링크탭이 올바른 주소가 아닙니다.");
     }
 
     const formData = new FormData();
