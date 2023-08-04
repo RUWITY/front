@@ -180,7 +180,12 @@ export default function WriteSection() {
                 <div className="mt-5">
                   <label className="flex items-center cursor-pointer">
                     <div className="relative">
-                      <input type="checkbox" id="toggleB" className="sr-only peer" />
+                      <input type="checkbox" id={tab.tap_id} className="sr-only peer" checked={tab.toggle_state} onChange={(e) => {
+                        const updatedItems = tabList.map((item: any) =>
+                          item.tap_id === Number(e.target.id) ? { ...item, toggle_state: !tab.toggle_state } : item
+                        );
+                        setTabList(updatedItems)
+                      }} />
                       <div className="block bg-gray-300 w-[37px] h-5 rounded-full peer-checked:bg-[#7163e8]" />
                       <div className="dot absolute left-[2px] top-[2px] bg-white w-4 h-4 rounded-full transition" />
                     </div>
@@ -208,7 +213,12 @@ export default function WriteSection() {
               <div className="mt-5">
                 <label className="flex items-center cursor-pointer">
                   <div className="relative">
-                    <input type="checkbox" id="toggleB" className="sr-only peer" />
+                    <input type="checkbox" id={tab.tap_id} className="sr-only peer" checked={tab.toggle_state} onChange={(e) => {
+                      const updatedItems = tabList.map((item: any) =>
+                        item.tap_id === Number(e.target.id) ? { ...item, toggle_state: !tab.toggle_state } : item
+                      );
+                      setTabList(updatedItems)
+                    }} />
                     <div className="block bg-gray-300 w-[37px] h-5 rounded-full peer-checked:bg-[#7163e8]" />
                     <div className="dot absolute left-[2px] top-[2px] bg-white w-4 h-4 rounded-full transition" />
                   </div>
