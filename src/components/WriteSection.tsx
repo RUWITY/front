@@ -75,7 +75,7 @@ export default function WriteSection() {
   };
   console.log(tabList)
   return (
-    <section className="mx-auto h-full ">
+    <section className="mx-auto h-full">
       <div className="flex flex-col mb-4 rounded-lg  min-h-[3rem] justify-center">
         <div className="mb-7">👤 프로필</div>
         <div className="flex mb-6">
@@ -163,20 +163,31 @@ export default function WriteSection() {
       {tabList.map((tab: any) => {
         if (tab.column === "text") {
           return (
-            <div className="flex flex-col mb-4 rounded-lg bg-white min-h-[3rem] justify-center py-3 px-4" key={tab.id}>
-              <div className="mb-[14px] font-semibold">✍️ 텍스트</div>
-              <input
-                className="py-2 px-4 rounded-lg outline-none focus:border-solid focus:border-primary focus:border w-full data-[state=invalid]:focus:border-solid data-[state=invalid]:focus:border-red-500 data-[state=invalid]:focus:border bg-neutral-100 h-11 text-sm"
-                placeholder={tab.context}
-                id={tab.tap_id}
-                onChange={(e) => {
-                  const updatedItems = tabList.map((item: any) =>
-                    item.tap_id === Number(e.target.id) ? { ...item, context: e.target.value } : item
-                  );
-                  setTabList(updatedItems)
-                }}
-              />
-            </div>
+            <>
+              <div className="flex flex-col mb-4 rounded-lg bg-white min-h-[3rem] justify-center py-3 px-4" key={tab.id}>
+                <div className="mb-[14px] font-semibold">✍️ 텍스트</div>
+                <input
+                  className="py-2 px-4 rounded-lg outline-none focus:border-solid focus:border-primary focus:border w-full data-[state=invalid]:focus:border-solid data-[state=invalid]:focus:border-red-500 data-[state=invalid]:focus:border bg-neutral-100 h-11 text-sm"
+                  placeholder={tab.context}
+                  id={tab.tap_id}
+                  onChange={(e) => {
+                    const updatedItems = tabList.map((item: any) =>
+                      item.tap_id === Number(e.target.id) ? { ...item, context: e.target.value } : item
+                    );
+                    setTabList(updatedItems)
+                  }}
+                />
+                <div className="mt-5">
+                  <label className="flex items-center cursor-pointer">
+                    <div className="relative">
+                      <input type="checkbox" id="toggleB" className="sr-only peer" />
+                      <div className="block bg-gray-300 w-[37px] h-5 rounded-full peer-checked:bg-[#7163e8]" />
+                      <div className="dot absolute left-[2px] top-[2px] bg-white w-4 h-4 rounded-full transition" />
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </>
           );
         }
         if (tab.column === "link") {
@@ -194,6 +205,15 @@ export default function WriteSection() {
                   setTabList(updatedItems)
                 }}
               />
+              <div className="mt-5">
+                <label className="flex items-center cursor-pointer">
+                  <div className="relative">
+                    <input type="checkbox" id="toggleB" className="sr-only peer" />
+                    <div className="block bg-gray-300 w-[37px] h-5 rounded-full peer-checked:bg-[#7163e8]" />
+                    <div className="dot absolute left-[2px] top-[2px] bg-white w-4 h-4 rounded-full transition" />
+                  </div>
+                </label>
+              </div>
             </div>
           );
         }
