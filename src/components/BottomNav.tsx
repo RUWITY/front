@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/legacy/image";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 
 import useLocalStorage from 'src/hooks/useLocalStorage'
 import * as userApi from "src/apis/user";
-import { userProfileState, imgFileState } from "src/store";
+import { userProfileState, imgFileState, tabListState } from "src/store";
 import Icons from "src/assets/icons";
 import Alert from "src/components/Alert";
-
+import { isValidURL } from "src/utils/url";
 
 export default function BottomNav() {
   const router = useRouter();
@@ -20,9 +20,9 @@ export default function BottomNav() {
     null
   );
   const [showModal, setShowModal] = useState(false);
-  const [inputs, setInputs] = useRecoilState(userProfileState);
-  const [imgFile, setImgFile] = useRecoilState(imgFileState);
-
+  const inputs = useRecoilValue(userProfileState);
+  const imgFile = useRecoilValue(imgFileState);
+  const tabList = useRecoilValue(tabListState);
   if (!accessToken) {
     return <></>
   }
@@ -31,19 +31,24 @@ export default function BottomNav() {
     return <></>;
   }
 
-  const actions = [{ column: 'link', tap_id: 1, title: '링크 제목', url: '링크 url', toggle_state: false, folded_state: false, }]
-
+  const actions = tabList as any
   const saveProfile = async () => {
+
+    if (!isValidURL(inputs.todayLink) || tabList.filter((item2: any) => item2.column === 'link').every((item: any) => !isValidURL(item.title))) {
+      return alert("올바른 링크가 아닙니다.");
+    }
+
     const formData = new FormData();
 
     formData.append('profile', imgFile);
+    formData.append('actions', actions);
 
     const res = (await userApi.SaveProfile(
       inputs.nickname,
       inputs.explanation,
       inputs.todayLink,
       formData,
-      actions
+      actions,
     )) as any;
 
     if (res) {
