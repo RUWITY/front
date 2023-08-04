@@ -22,7 +22,10 @@ const UserInfo: NextPage = () => {
         </button>
         <button
           onClick={async () => {
+
             setShowModal(false)
+            router.push('/')
+            window.localStorage.removeItem("access_token");
             await userApi.resign()
           }}
           className=" bg-[#7163E8] text-white py-3 w-full max-w-[180px] rounded-lg font-semibold" >
