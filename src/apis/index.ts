@@ -1,6 +1,6 @@
 import Axios, { AxiosResponse } from 'axios';
 
-export const createApi = (headers: any) => {
+export const createApi = () => {
   const _customAxios = Axios.create({
     baseURL: 'https://ruwity.wishu.site',
     withCredentials: true,
@@ -22,19 +22,12 @@ export const createApi = (headers: any) => {
     if (token) {
       config.headers['Authorization'] = `Bearer ${token.replace(/\"/gi, '')}`;
     }
-    if (headers) {
-      config.headers = { ...config.headers, ...headers };
-    }
     return config;
   });
 
   return _customAxios;
 };
 
-const customHeaders = {
-  'Content-Type': 'multipart/form-data',
-};
-
-const customAxios = createApi(customHeaders);
+const customAxios = createApi();
 
 export default customAxios;
