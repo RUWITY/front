@@ -24,6 +24,7 @@ export default function Header() {
 
   const [profile, setProfile] = useState<any>();
 
+
   const loadProfile = async () => {
     const res = (await userApi.fetchProfile()) as any;
 
@@ -40,7 +41,7 @@ export default function Header() {
 
   const saveProfile = async () => {
 
-    if (!isValidURL(inputs.todayLink)) {
+    if (!isValidURL(inputs.todayLink) || tabList.filter((item2: any) => item2.column === 'link').every((item: any) => !isValidURL(item.title))) {
       return alert("올바른 링크가 아닙니다.");
     }
 
