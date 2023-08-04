@@ -66,7 +66,7 @@ export default function Page({ id }: any) {
           <div className="text-xs mb-1.5 text-white">
             <span className=" font-semibold ">{user.user_nickname}</span>님의 <span>{formatDate(user.created_at)}</span>의 관심 링크
           </div>
-          <Link href={user.today_link} onClick={() => { AddUrlView(67) }}>
+          <Link href={user.today_link} onClick={() => { AddUrlView(user.today_link_id) }}>
             <div className=" underline mb-9 text-white text-sm">{user.today_link}</div>
           </Link>
           <div className=" text-white text-sm font-semibold mb-5">요즘 듣고있는 노래!</div>
