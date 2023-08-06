@@ -1,5 +1,6 @@
 import { DEFAULT_SANS_SERIF_FONT } from "next/dist/shared/lib/constants";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 import * as urlApi from "src/apis/url";
 import * as userApi from "src/apis/user";
@@ -18,6 +19,10 @@ export default function LinkHistory() {
           console.log(dsa)
           return { ...item, title: dsa.data.title, img: dsa.data.thumbnail_url }
         }
+        if (isNaverDomain(item.url)) {
+          return { ...item, title: '', img: '/naver.png' }
+        }
+        
         else {
           return item
         }
@@ -37,7 +42,19 @@ export default function LinkHistory() {
     const pattern = /^(https?:\/\/)?(www\.)?youtube\.com\//;
     return pattern.test(url);
   }
-
+  function isNaverDomain(url: string): boolean {
+    // URL에서 도메인 부분을 추출하기 위해 다음과 같은 정규식을 사용합니다.
+    const domainRegex = /^(?:https?:\/\/)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)/i;
+    const matches = url.match(domainRegex);
+    
+    if (matches && matches.length >= 2) {
+      const domain = matches[1].toLowerCase();
+      return domain.includes("naver.com");
+    }
+    
+    return false;
+  }
+  
   function getYouTubeVideoID(url: string): string | null {
 
     const pattern = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/;
@@ -61,8 +78,8 @@ export default function LinkHistory() {
         <div className="w-full space-y-2">
           {urlList.map((item: any) => (
             <div className="bg-white px-4 py-2 w-full flex flex-col rounded-lg" key={item.id}>
-              <div className="flex justify-between ">
-                <div className="text-[#A9A9A9]">
+              <div className="flex justify-between">
+                <div className="text-[#A9A9A9] mb-2">
                   {String(new Date(item.created_at).getFullYear() - 2000).padStart(2, "0")}.
                   {String(new Date(item.created_at).getMonth() + 1).padStart(2, "0")}.
                   {String(new Date(item.created_at).getDate()).padStart(2, "0")}
@@ -86,15 +103,17 @@ export default function LinkHistory() {
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap',
-                  }}>{item.title ?? '[Playlist] 🎧들으면 딱 아는 브루노'}</span>
+                  }}>{item.title ?? ''}</span>
                   <div className="text-[#A9A9A9]">조회수 {item.view}</div>
                 </div>
               </div>
+              <Link href={item.url}  className="mt-2">
               <div
                 className="mt-1 text-[#737373]"
               >
                 {item.url}
               </div>
+              </Link>
             </div>
           ))}
         </div>
