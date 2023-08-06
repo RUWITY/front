@@ -86,13 +86,13 @@ export default function Page({ id }: any) {
             if(tab.column==='text'){
               return <>
               <div className=" text-white text-sm font-semibold mb-5">텍스트</div>
-              <div className=" py-5 text-[#7163E8] font-semibold text-sm bg-white rounded-xl mb-11">{tab.context}</div>
+              <div className=" py-5 text-[#7163E8] font-semibold text-sm bg-white rounded-xl mb-11">{tab.context?tab.context:'링크지에 오신 것을 환영해요'}</div>
               </>
             }
             else{
               return <Link href={tab.title}>
               <div className=" text-white text-sm font-semibold mb-5">링크</div>
-              <div className=" py-5 text-[#7163E8] font-semibold text-sm bg-white rounded-xl mb-11">{tab.title}</div>
+              <div className=" py-5 text-[#7163E8] font-semibold text-sm bg-white rounded-xl mb-11">{tab.title?tab.title:"링크지에 오신 것을 환영해요"}</div>
               </Link>
             }
             
