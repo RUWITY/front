@@ -22,7 +22,7 @@ export default function WriteSection() {
 
   const loadTabList = async () => {
     const res = await tabApi.fetchTabList() as any
-    console.log(res)
+    
     setTabList(res)
   }
 
@@ -73,7 +73,7 @@ export default function WriteSection() {
     }
     inputRef.current.click();
   };
-  console.log(tabList)
+  
   return (
     <section className="mx-auto h-full">
       <div className="flex flex-col mb-4 rounded-lg  min-h-[3rem] justify-center">
@@ -186,8 +186,8 @@ export default function WriteSection() {
                         );
                         setTabList(updatedItems)
                       }} />
-                      <div className="block bg-gray-300 w-[37px] h-5 rounded-full peer-checked:bg-[#7163e8]" />
-                      <div className="dot absolute left-[2px] top-[2px] bg-white w-4 h-4 rounded-full transition" />
+                      <div className="block bg-gray-300 w-[37px] h-5 rounded-full peer-checked:bg-[#7163e8] " />
+                      <div className="absolute left-[2px] top-[2px] bg-white w-4 h-4 rounded-full transition peer-checked:translate-x-[100%]" />
                     </div>
                   </label>
                 </div>
