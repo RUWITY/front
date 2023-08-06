@@ -13,6 +13,7 @@ import TermActiveCheckIcon from './term_active_check.svg';
 import KakaoIcon from './kakao.svg';
 import UnhappyIcon from './unhappy.svg';
 import HappyIcon from './happy.svg';
+import DeleteIcon from './delete.svg';
 
 export const Icons = {
   AnalyzeIcon,
@@ -30,6 +31,7 @@ export const Icons = {
   KakaoIcon,
   UnhappyIcon,
   HappyIcon,
+  DeleteIcon
 };
 
 export default Icons;

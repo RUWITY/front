@@ -73,7 +73,7 @@ export default function WriteSection() {
     }
     inputRef.current.click();
   };
-  
+  console.log(tabList)
   return (
     <section className="mx-auto h-full">
       <div className="flex flex-col mb-4 rounded-lg  min-h-[3rem] justify-center">
@@ -161,14 +161,16 @@ export default function WriteSection() {
         + 탭 추가
       </button>
       {tabList.map((tab: any) => {
+        if (tab.method==='delete') return <></>
         if (tab.column === "text") {
           return (
             <>
               <div className="flex flex-col mb-4 rounded-lg bg-white min-h-[3rem] justify-center py-3 px-4" key={tab.id}>
                 <div className="mb-[14px] font-semibold">✍️ 텍스트</div>
+                
                 <input
                   className="py-2 px-4 rounded-lg outline-none focus:border-solid focus:border-primary focus:border w-full data-[state=invalid]:focus:border-solid data-[state=invalid]:focus:border-red-500 data-[state=invalid]:focus:border bg-neutral-100 h-11 text-sm"
-                  placeholder={tab.context}
+                  placeholder={tab.context===''?'링크지에 오신것을 환경해요':tab.context}
                   id={tab.tap_id}
                   onChange={(e) => {
                     const updatedItems = tabList.map((item: any) =>
@@ -177,7 +179,7 @@ export default function WriteSection() {
                     setTabList(updatedItems)
                   }}
                 />
-                <div className="mt-5">
+                <div className="mt-5  flex justify-between">
                   <label className="flex items-center cursor-pointer">
                     <div className="relative">
                       <input type="checkbox" id={tab.tap_id} className="sr-only peer" checked={tab.toggle_state} onChange={(e) => {
@@ -190,6 +192,23 @@ export default function WriteSection() {
                       <div className="absolute left-[2px] top-[2px] bg-white w-4 h-4 rounded-full transition peer-checked:translate-x-[100%]" />
                     </div>
                   </label>
+                  <div  onClick={(e:any) => {
+              const updatedItems = tabList.map((item: any) =>
+              {
+              return item.tap_id === Number(e.target.id) ? { ...item, method:'delete' } : item}
+              
+            );
+            setTabList(updatedItems)
+            }}>
+                  <Image
+            src={Icons.DeleteIcon}
+            width={18}
+            height={18}
+            alt="뒤로가기 아이콘"
+            id={tab.tap_id} 
+            className=" cursor-pointer"
+          />
+          </div>
                 </div>
               </div>
             </>
@@ -201,7 +220,7 @@ export default function WriteSection() {
               <div className="mb-[14px] font-semibold">🔗 링크</div>
               <input
                 className="py-2 px-4 rounded-lg outline-none focus:border-solid focus:border-primary focus:border w-full data-[state=invalid]:focus:border-solid data-[state=invalid]:focus:border-red-500 data-[state=invalid]:focus:border bg-neutral-100 h-11 text-sm"
-                placeholder={tab.title}
+                placeholder={tab.title===''?'링크지에 오신것을 환경해요':tab.title}
                 id={tab.tap_id}
                 onChange={(e) => {
                   const updatedItems = tabList.map((item: any) =>
@@ -210,7 +229,7 @@ export default function WriteSection() {
                   setTabList(updatedItems)
                 }}
               />
-              <div className="mt-5">
+              <div className="mt-5  flex justify-between">
                 <label className="flex items-center cursor-pointer">
                   <div className="relative">
                     <input type="checkbox" id={tab.tap_id} className="sr-only peer" checked={tab.toggle_state} onChange={(e) => {
@@ -223,6 +242,23 @@ export default function WriteSection() {
                     <div className="dot absolute left-[2px] top-[2px] bg-white w-4 h-4 rounded-full transition" />
                   </div>
                 </label>
+                <div  onClick={(e:any) => {
+              const updatedItems = tabList.map((item: any) =>
+              {
+              return item.tap_id === Number(e.target.id) ? { ...item, method:'delete' } : item}
+              
+            );
+            setTabList(updatedItems)
+            }}>
+                  <Image
+            src={Icons.DeleteIcon}
+            width={18}
+            height={18}
+            alt="뒤로가기 아이콘"
+            id={tab.tap_id} 
+            className=" cursor-pointer"
+          />
+          </div>
               </div>
             </div>
           );
