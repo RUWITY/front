@@ -65,11 +65,10 @@ export default function Page({ id }: any) {
   
   return (
     <div
-      className="w-full min-h-screen h-full flex pt-[60px] absolute z-10  max-w-[390px] bg-[#7163E8]"
-      
+      className="w-full min-h-screen h-full flex  absolute z-10  max-w-[390px] "
     >
       <div className="flex flex-col text-neutral-800 max-w-[390px] w-full mx-auto relative">
-        <main className="flex-1 px-4 z-2 pt-4 pb-18 mb-[76px] text-center"style={{
+        <main className="flex-1 px-4 z-2 pt-4 pb-18  text-center"style={{
         background: "linear-gradient(180deg, #7163E8 0%, #8BADFF 100%)",
       }}>
           <div className="w-[104px] h-[104px] rounded-[50%] bg-red-400 mb-5 mx-auto" />
