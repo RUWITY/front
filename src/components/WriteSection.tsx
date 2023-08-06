@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/legacy/image";
 import { useRecoilState, } from "recoil";
 import { useRouter } from "next/router";
-
+import { isValidURL } from "src/utils/url";
 import Icons from "src/assets/icons";
 import Modal from "src/components/Modal";
 import * as userApi from "src/apis/user";
@@ -73,6 +73,33 @@ export default function WriteSection() {
     }
     inputRef.current.click();
   };
+  
+  const saveProfile = async () => {
+
+    if (!isValidURL(inputs.todayLink)) {
+      return alert("오늘의 링크가 올바른 주소가 아닙니다.");
+    }
+    if (!tabList.filter((item2: any) => item2.column === 'link'&&item2.method!=='delete').every((item: any) => isValidURL(item.title))  ) {
+      return alert("링크탭이 올바른 주소가 아닙니다.");
+    }
+    const formData = new FormData();
+
+    formData.append('profile', imgFile);
+    formData.append('actions', tabList);
+
+    const res = (await userApi.SaveProfile(
+      inputs.nickname,
+      inputs.explanation,
+      inputs.todayLink,
+      formData,
+      tabList,
+    )) as any;
+
+    if (res) {
+      setShowModal(true)
+    }
+  };
+  
   console.log(tabList)
   return (
     <section className="mx-auto h-full">
@@ -156,7 +183,7 @@ export default function WriteSection() {
           boxShadow: "0px 4px 20px 0px rgba(0, 0, 0, 0.20)",
         }}
         type="button"
-        onClick={() => setShowModal(true)}
+        onClick={saveProfile}
       >
         + 탭 추가
       </button>
