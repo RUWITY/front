@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+
 import type { GetServerSidePropsContext } from 'next'
 import * as urlApi from "src/apis/url";
+import * as tabApi from "src/apis/tab";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { params } = context;
@@ -17,6 +19,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 export default function Page({ id }: any) {
   const router = useRouter()
   const [user, setUser] = useState<any>()
+  const [tabList, setTabList] = useState<any>()
 
   const AddUrlView = async (id: any) => {
     (await urlApi.AddUrlView(id)) as any;
@@ -33,9 +36,18 @@ export default function Page({ id }: any) {
     }
   }
 
+  const loadTabList = async () => {
+    const res = await tabApi.fetchTabList() as any
+    console.log(res)
+    setTabList(res)
+  }
+
   useEffect(() => {
     loadUserProfile()
+    loadTabList()
   }, [])
+
+
 
   function formatDate(dateString: string): string {
     const date = new Date(dateString);
@@ -50,7 +62,7 @@ export default function Page({ id }: any) {
   if (!user) {
     return <div></div>
   }
-  console.log(user)
+  
   return (
     <div
       className="w-full min-h-screen h-full flex pt-[60px] absolute z-10  max-w-[390px]"
@@ -69,15 +81,22 @@ export default function Page({ id }: any) {
           <Link href={user.today_link} onClick={() => { AddUrlView(user.today_link_id) }}>
             <div className=" underline mb-9 text-white text-sm">{user.today_link}</div>
           </Link>
-          <div className=" text-white text-sm font-semibold mb-5">요즘 듣고있는 노래!</div>
-          <div className=" py-5 text-[#7163E8] font-semibold text-sm bg-white rounded-xl mb-11">링크입력</div>
-          <div className=" text-white text-sm font-semibold mb-6">링크지는 언제나 최고의 웹프로필을 지원합니다</div>
-          <Link href='/'>
-            <button className="w-full bg-white py-5 px-5 inline-flex items-center rounded-xl">
-              <img src="/logo.png" className="w-[77px] h-5 mr-6" />
-              <div className=" text-[#7163E8] font-semibold">링크지 홈페이지🏠</div>
-            </button>
-          </Link>
+          {tabList?.map((tab:any)=>{
+            if(!tab.toggle_state) return <></>
+            if(tab.column==='text'){
+              return <>
+              <div className=" text-white text-sm font-semibold mb-5">텍스트</div>
+              <div className=" py-5 text-[#7163E8] font-semibold text-sm bg-white rounded-xl mb-11">{tab.context}</div>
+              </>
+            }
+            else{
+              return <Link href={tab.title}>
+              <div className=" text-white text-sm font-semibold mb-5">링크</div>
+              <div className=" py-5 text-[#7163E8] font-semibold text-sm bg-white rounded-xl mb-11">{tab.title}</div>
+              </Link>
+            }
+            
+          })}
         </main>
       </div>
     </div>
