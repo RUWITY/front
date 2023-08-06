@@ -17,7 +17,7 @@ export default function LinkHistory() {
           const id = getYouTubeVideoID(item.url)
           const dsa = await urlApi.fetchTYoutube(id)
           console.log(dsa)
-          return { ...item, title: dsa.data.title, img: dsa.data.thumbnail_url }
+          return { ...item, title: dsa.data.title, img: dsa.data.thumbnail_url??'https://www.youtube.com/img/desktop/yt_1200.png' }
         }
         if (isNaverDomain(item.url)) {
           return { ...item, title: '', img: '/naver.png' }
@@ -29,7 +29,7 @@ export default function LinkHistory() {
       }
       )
     )
-    console.log(messages)
+    
     setUrlList(messages)
   };
 
