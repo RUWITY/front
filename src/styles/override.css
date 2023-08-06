@@ -43,3 +43,8 @@ fieldset {
 *::after {
   box-sizing: border-box;
 }
+
+input:checked ~ .dot {
+  transform: translateX(100%);
+  background-color: white;
+}
