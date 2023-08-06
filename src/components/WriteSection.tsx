@@ -170,7 +170,7 @@ export default function WriteSection() {
                 
                 <input
                   className="py-2 px-4 rounded-lg outline-none focus:border-solid focus:border-primary focus:border w-full data-[state=invalid]:focus:border-solid data-[state=invalid]:focus:border-red-500 data-[state=invalid]:focus:border bg-neutral-100 h-11 text-sm"
-                  placeholder={tab.context===''?'링크지에 오신것을 환경해요':tab.context}
+                  placeholder={tab.context===''?'링크지에 오신것을 환영해요':tab.context}
                   id={tab.tap_id}
                   onChange={(e) => {
                     const updatedItems = tabList.map((item: any) =>
@@ -220,7 +220,7 @@ export default function WriteSection() {
               <div className="mb-[14px] font-semibold">🔗 링크</div>
               <input
                 className="py-2 px-4 rounded-lg outline-none focus:border-solid focus:border-primary focus:border w-full data-[state=invalid]:focus:border-solid data-[state=invalid]:focus:border-red-500 data-[state=invalid]:focus:border bg-neutral-100 h-11 text-sm"
-                placeholder={tab.title===''?'링크지에 오신것을 환경해요':tab.title}
+                placeholder={tab.title===''?'링크지에 오신것을 환영해요':tab.title}
                 id={tab.tap_id}
                 onChange={(e) => {
                   const updatedItems = tabList.map((item: any) =>
